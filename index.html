@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Achmad Kamal</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Added Font Awesome for authentic social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- External Libraries -->
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">Portfolio</span>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#experience" class="nav-link">Experience</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#projects" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="name-text">Achmad Kamal</span>
+                </h1>
+                <div class="hero-subtitle">
+                    <span id="typed-text"></span>
+                </div>
+                <p class="hero-description">
+                    Computer Science student passionate about technology with strong dedication to frontend development. Focused on creating modern, interactive, and user-friendly web interfaces.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Contact Me</a>
+                    <a class="btn btn-secondary" id="download-cv">
+                        <i class="icon-download"></i>
+                        Download CV
+                    </a>
+                </div>
+                <div class="social-links">
+                    <!-- Updated to use authentic Font Awesome icons -->
+                    <a href="mailto:ach.khamal@gmail.com" class="social-link" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://www.instagram.com/ach_kamall/" class="social-link" title="Instagram" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@achkamall1" class="social-link" title="TikTok" target="_blank">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="https://github.com/achkamal" class="social-link" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- Added sophisticated visual elements to fill empty space -->
+            <div class="hero-visual">
+                <!-- Updated photo display to be circular and 3D, removed stats display -->
+                <div class="hero-photo-container">
+                    <div class="photo-frame-3d">
+                        <div class="photo-border-rotation"></div>
+                        <div class="photo-glow-circular"></div>
+                        <div class="photo-wrapper-circular">
+                            <img src="assets/katalog.jpg" alt="Profile Photo" class="hero-photo-circular" id="hero-photo">
+                            <div class="photo-overlay-circular">
+                                <div class="overlay-content-circular">
+                                    <span class="overlay-text">Computer Engineering</span>
+                                    <span class="overlay-subtext">Dian Nuswantoro University</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="photo-particles-3d">
+                            <div class="particle-3d"></div>
+                            <div class="particle-3d"></div>
+                            <div class="particle-3d"></div>
+                            <div class="particle-3d"></div>
+                            <div class="particle-3d"></div>
+                            <div class="particle-3d"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="floating-elements">
+                    <div class="floating-card" data-speed="2">
+                        <div class="card-icon">💻</div>
+                        <div class="card-text">Web Dev</div>
+                    </div>
+                    <div class="floating-card" data-speed="3">
+                        <div class="card-icon">📱</div>
+                        <div class="card-text">Mobile</div>
+                    </div>
+                    <div class="floating-card" data-speed="1.5">
+                        <div class="card-icon">🎨</div>
+                        <div class="card-text">Design</div>
+                    </div>
+                    <div class="floating-card" data-speed="2.5">
+                        <div class="card-icon">🥋</div>
+                        <div class="card-text">Taekwondo</div>
+                    </div>
+                </div>
+                <div class="geometric-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-bg-animation"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <!-- Placeholder for profile photo -->
+                    <div class="profile-photo">
+                        <img src="assets/bmwkmlrmh.jpg" alt="Profile Photo" id="profile-img">
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h3 class="about-subtitle">Computer Science Student</h3>
+                    <p class="about-description">
+                        I am a student at Dian Nuswantoro University (Udinus), 
+                        majoring in Informatics Engineering. I have a strong interest in technology and software development,
+                         while my background as a Taekwondo athlete has taught me discipline, focus, and dedication.
+                    </p>
+                    <p class="about-description">
+                        The combination of my passion for technology and athlete’s mindset 
+                        drives me to always give my best in every project I work on. 
+                        I believe that technology can provide solutions to various challenges in everyday life.
+                    </p>
+                    <div class="skills-preview">
+                        <span class="skill-tag">Web Development</span>
+                        <span class="skill-tag">Mobile Apps</span>
+                        <span class="skill-tag">UI/UX Design</span>
+                        <span class="skill-tag">Event Management</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <!-- Added 3D visual elements and enhanced timeline structure -->
+            <div class="experience-visual-container">
+                <div class="experience-3d-background">
+                    <div class="floating-orb orb-1"></div>
+                    <div class="floating-orb orb-2"></div>
+                    <div class="floating-orb orb-3"></div>
+                </div>
+                <div class="experience-timeline">
+                    <div class="timeline-item" data-aos="fade-up">
+                        <div class="timeline-marker-3d">
+                            <div class="marker-glow"></div>
+                            <div class="marker-pulse"></div>
+                        </div>
+                        <div class="timeline-content-3d">
+                            <div class="content-card-3d">
+                                <h3 class="timeline-title">Taekwondo Athletes</h3>
+                                <p class="timeline-description">
+                                   Taekwondo athlete shaped by discipline, focus, and a strong fighting spirit. 
+                                   This experience has instilled perseverance and dedication that I carry into every aspect of life.
+                                </p>
+                                <div class="timeline-skills">
+                                    <span class="timeline-skill-3d">Discipline</span>
+                                    <span class="timeline-skill-3d">Leadership</span>
+                                    <span class="timeline-skill-3d">Mental Strength</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="timeline-marker-3d">
+                            <div class="marker-glow"></div>
+                            <div class="marker-pulse"></div>
+                        </div>
+                        <div class="timeline-content-3d">
+                            <div class="content-card-3d">
+                                <h3 class="timeline-title">Event Organizer (Freelance)</h3>
+                                <p class="timeline-description">
+                                    Responsible for managing and organizing major Taekwondo events, including:
+                                </p>
+                                <ul class="timeline-events">
+                                    <li>Commander of the IV Diponegoro Cup Military Region</li>
+                                    <li>PON Polri Kapolri Cup 6</li>
+                                    <li>Rawa Pening Taekwondo Championship</li>
+                                </ul>
+                                <div class="timeline-skills">
+                                    <span class="timeline-skill-3d">Project Management</span>
+                                    <span class="timeline-skill-3d">Team Coordination</span>
+                                    <span class="timeline-skill-3d">Problem Solving</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="timeline-marker-3d">
+                            <div class="marker-glow"></div>
+                            <div class="marker-pulse"></div>
+                        </div>
+                        <div class="timeline-content-3d">
+                            <div class="content-card-3d">
+                                <h3 class="timeline-title">Head of Open Recruitment — RISSMANA(Remaja Islam SMAN 1 Ambarawa)</h3>
+                                <p class="timeline-description">
+                                    Led the recruitment committee for new RISSMANA members, 
+                                    overseeing activities from planning to execution.
+                                </p>
+                                <div class="timeline-skills">
+                                    <span class="timeline-skill-3d">Leadership</span>
+                                    <span class="timeline-skill-3d">Strategic Planning</span>
+                                    <span class="timeline-skill-3d">Team Management</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <!-- Enhanced projects grid with 3D effects and interactive elements -->
+            <div class="projects-3d-container">
+                <div class="projects-background-3d">
+                    <div class="bg-particle bg-particle-1"></div>
+                    <div class="bg-particle bg-particle-2"></div>
+                    <div class="bg-particle bg-particle-3"></div>
+                    <div class="bg-particle bg-particle-4"></div>
+                </div>
+                <div class="projects-grid-3d">
+                    <div class="project-card-3d" data-tilt>
+                        <div class="project-card-inner">
+                            <div class="project-glow"></div>
+                            <div class="project-image-3d">
+                                <img src="assets/demosigap.jpg" alt="SIGAP.ID App" id="project-img-1">
+                                <div class="image-overlay-3d">
+                                    <div class="overlay-icon">🚒</div>
+                                </div>
+                            </div>
+                            <div class="project-content-3d">
+                                <h3 class="project-title-3d">SIGAP.ID(On Going)</h3>
+                                <p class="project-description">
+                                    A mobile application for a fire emergency reporting 
+                                    system that enables the public to report incidents quickly and efficiently.
+                                </p>
+                                <div class="project-tech-3d">
+                                    <span class="tech-tag-3d">Mobile App</span>
+                                    <span class="tech-tag-3d">Emergency System</span>
+                                    <span class="tech-tag-3d">Real-time</span>
+                                </div>
+                                <div class="project-links-3d">
+                                    <a href="https://github.com/achkamal/SIGAP.DAMKAR.ID" class="project-link-3d">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card-3d" data-tilt>
+                        <div class="project-card-inner">
+                            <div class="project-glow"></div>
+                            <div class="project-image-3d">
+                                <img src="assets/bunga.png" alt="Website Bunga" id="project-img-2">
+                                <div class="image-overlay-3d">
+                                    <div class="overlay-icon">🌸</div>
+                                </div>
+                            </div>
+                            <div class="project-content-3d">
+                                <h3 class="project-title-3d">Digital Flower</h3>
+                                <p class="project-description">
+                                    A personal website that showcases beautiful and interactive flower designs.
+                                </p>
+                                <div class="project-tech-3d">
+                                    <span class="tech-tag-3d">Web Development</span>
+                                    <span class="tech-tag-3d">Responsive Design</span>
+                                    <span class="tech-tag-3d">UI/UX</span>
+                                </div>
+                                <div class="project-links-3d">
+                                    <a href="https://achkamal.github.io/flower/" class="project-link-3d">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card-3d" data-tilt>
+                        <div class="project-card-inner">
+                            <div class="project-glow"></div>
+                            <div class="project-image-3d">
+                                <img src="assets/surat.png" alt="Kartu Rujukan BPJS Digital" id="project-img-3">
+                                <div class="image-overlay-3d">
+                                    <div class="overlay-icon">🏥</div>
+                                </div>
+                            </div>
+                            <div class="project-content-3d">
+                                <h3 class="project-title-3d">Kartu Rujukan BPJS Digital</h3>
+                                <p class="project-description">
+                                    A physical BPJS card that I transformed into a display on a website.(It is recommended to open using a desktop.)
+                                </p>
+                                <div class="project-tech-3d">
+                                    <span class="tech-tag-3d">Digital Health</span>
+                                    <span class="tech-tag-3d">System Integration</span>
+                                    <span class="tech-tag-3d">UI/UX</span>
+                                </div>
+                                <div class="project-links-3d">
+                                    <a href="https://achkamal.github.io/SuratRujukanFKTPDigital/" class="project-link-3d">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Me</h2>
+            <!-- Added 3D background elements and centered contact layout -->
+            <div class="contact-3d-container">
+                <div class="contact-background-3d">
+                    <div class="contact-orb contact-orb-1"></div>
+                    <div class="contact-orb contact-orb-2"></div>
+                    <div class="contact-orb contact-orb-3"></div>
+                    <div class="contact-particles">
+                        <div class="contact-particle"></div>
+                        <div class="contact-particle"></div>
+                        <div class="contact-particle"></div>
+                        <div class="contact-particle"></div>
+                        <div class="contact-particle"></div>
+                    </div>
+                </div>
+                <div class="contact-content-centered">
+                    <div class="contact-info-centered">
+                        <div class="contact-item-3d" data-aos="fade-up" data-aos-delay="100">
+                            <div class="contact-icon-3d">
+                                <div class="icon-glow"></div>
+                                <i class="fas fa-envelope"></i>
+                                <div class="icon-ripple"></div>
+                            </div>
+                            <div class="contact-details-3d">
+                                <h3>Email</h3>
+                                <a href="mailto:ach.khamal@gmail.com" class="contact-link-3d">ach.khamal@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                       
+                        
+                        <div class="contact-item-3d" data-aos="fade-up" data-aos-delay="300">
+                            <div class="contact-icon-3d">
+                                <div class="icon-glow"></div>
+                                <i class="fab fa-instagram"></i>
+                                <div class="icon-ripple"></div>
+                            </div>
+                            <div class="contact-details-3d">
+                                <h3>Instagram</h3>
+                                <a href="https://www.instagram.com/ach_kamall/" class="contact-link-3d" target="_blank">@ach_kamall</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item-3d" data-aos="fade-up" data-aos-delay="400">
+                            <div class="contact-icon-3d">
+                                <div class="icon-glow"></div>
+                                <i class="fab fa-tiktok"></i>
+                                <div class="icon-ripple"></div>
+                            </div>
+                            <div class="contact-details-3d">
+                                <h3>TikTok</h3>
+                                <a href="https://www.tiktok.com/@achkamall1" class="contact-link-3d" target="_blank">@achkamall1</a>
+                            </div>
+                        </div>
+                        
+                              <div class="contact-item-3d" data-aos="fade-up" data-aos-delay="400">
+                            <div class="contact-icon-3d">
+                                <div class="icon-glow"></div>
+                                <i class="fab fa-github"></i>
+                                <div class="icon-ripple"></div>
+                            </div>
+                            <div class="contact-details-3d">
+                                <h3>GitHub</h3>
+                                <a href="https://github.com/achkamal" class="contact-link-3d" target="_blank">achkamal</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Portfolio. Achmad Kamal.</p>
+                <p>Dibuat dengan ❤️ </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+    <script>
+        AOS.init();
+        $(document).ready(function(){
+            $('.project-card-3d').tilt({
+                maxTilt: 5,
+                perspective: 1000,
+                easing: "cubic-bezier(.03,.98,.52,.99)",
+                scale: 1.1,
+                speed: 1000
+            });
+        });
+    </script>
+</body>
+</html>
