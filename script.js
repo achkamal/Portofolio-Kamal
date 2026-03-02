@@ -1,219 +1,136 @@
-// DOM Content Loaded
-document.addEventListener("DOMContentLoaded", () => {
-  // Initialize all functionality
-  initNavigation()
-  initTypingEffect()
-  initScrollReveal()
-  initScrollSpy()
-  initSmoothScrolling()
-  initMobileMenu()
-  initDownloadCV()
-  initHeroVisuals()
-  initStatsCounter()
-  initAdvancedPhotoEffects() // Added advanced photo functionality
-
-  // Add loading animation
-  document.body.classList.add("loading")
-})
-
 // Navigation Functionality
 function initNavigation() {
-  const navbar = document.getElementById("navbar")
+    const navbar = document.getElementById("navbar");
 
-  // Navbar scroll effect
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add("scrolled")
-    } else {
-      navbar.classList.remove("scrolled")
-    }
-  })
+    // Navbar scroll effect
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+        } else {
+            navbar.classList.remove("scrolled");
+        }
+    });
 }
 
 // Typing Effect for Hero Section
 function initTypingEffect() {
-  const typedElement = document.getElementById("typed-text")
+    const typedElement = document.getElementById("typed-text");
 
-  // Declare Typed variable here if necessary
-  const Typed = window.Typed
-
-  if (typedElement && typeof Typed !== "undefined") {
-    new Typed("#typed-text", {
-      strings: [
-        "Computer Science Students",
-        "Frontend Developer",
-      ],
-      typeSpeed: 50,
-      backSpeed: 30,
-      backDelay: 2000,
-      startDelay: 1000,
-      loop: true,
-      showCursor: true,
-      cursorChar: "|",
-      autoInsertCss: true,
-    })
-  }
+    if (typedElement && typeof Typed !== "undefined") {
+        new Typed("#typed-text", {
+            strings: [
+                "Computer Science Student",
+                "Frontend Developer",
+                "Taekwondo Athlete"
+            ],
+            typeSpeed: 50,
+            backSpeed: 30,
+            backDelay: 2000,
+            startDelay: 1000,
+            loop: true,
+            showCursor: true,
+            cursorChar: "|",
+            autoInsertCss: true,
+        });
+    }
 }
 
 // Scroll Reveal Animations
 function initScrollReveal() {
-  // Declare ScrollReveal variable here if necessary
-  const ScrollReveal = window.ScrollReveal
+    if (typeof ScrollReveal !== "undefined") {
+        const sr = ScrollReveal({
+            origin: "bottom",
+            distance: "60px",
+            duration: 1000,
+            delay: 200,
+            easing: "ease-out",
+            reset: false,
+        });
 
-  if (typeof ScrollReveal !== "undefined") {
-    const sr = ScrollReveal({
-      origin: "bottom",
-      distance: "60px",
-      duration: 1000,
-      delay: 200,
-      easing: "ease-out",
-      reset: false,
-    })
+        // Reveal animations for different sections
+        sr.reveal(".section-title", { delay: 300 });
+        sr.reveal(".about-image", { origin: "left", delay: 400 });
+        sr.reveal(".about-text", { origin: "right", delay: 500 });
+        sr.reveal(".timeline-item", { interval: 200 });
+        sr.reveal(".project-card-3d", { interval: 200 });
+        sr.reveal(".certificate-card-3d", { interval: 200 });
+        sr.reveal(".contact-item-3d", { interval: 100 });
 
-    // Reveal animations for different sections
-    sr.reveal(".section-title", { delay: 300 })
-    sr.reveal(".about-image", { origin: "left", delay: 400 })
-    sr.reveal(".about-text", { origin: "right", delay: 500 })
-    sr.reveal(".timeline-item", { interval: 200 })
-    sr.reveal(".project-card", { interval: 200 })
-    sr.reveal(".contact-item", { interval: 100 })
-    sr.reveal(".contact-cta", { delay: 400 })
-
-    // Hero section animations
-    sr.reveal(".hero-title", { origin: "top", delay: 500 })
-    sr.reveal(".hero-subtitle", { delay: 700 })
-    sr.reveal(".hero-description", { delay: 900 })
-    sr.reveal(".hero-buttons", { delay: 1100 })
-    sr.reveal(".social-links", { delay: 1300 })
-    sr.reveal(".floating-card", { interval: 200, delay: 1500 })
-    sr.reveal(".stats-display", { delay: 1700 })
-    sr.reveal(".hero-photo-container", { origin: "right", delay: 1200 }) // Added photo reveal animation
-  }
+        // Hero section animations
+        sr.reveal(".hero-title", { origin: "top", delay: 500 });
+        sr.reveal(".hero-subtitle", { delay: 700 });
+        sr.reveal(".hero-description", { delay: 900 });
+        sr.reveal(".hero-buttons", { delay: 1100 });
+        sr.reveal(".social-links", { delay: 1300 });
+        sr.reveal(".hero-photo-container", { origin: "right", delay: 1200 });
+    }
 }
 
 // Scroll Spy for Navigation
 function initScrollSpy() {
-  const sections = document.querySelectorAll("section[id]")
-  const navLinks = document.querySelectorAll(".nav-link")
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".nav-link");
 
-  function updateActiveLink() {
-    let current = ""
+    function updateActiveLink() {
+        let current = "";
 
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop
-      const sectionHeight = section.clientHeight
+        sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
 
-      if (window.scrollY >= sectionTop - 200) {
-        current = section.getAttribute("id")
-      }
-    })
+            if (window.scrollY >= sectionTop - 200) {
+                current = section.getAttribute("id");
+            }
+        });
 
-    navLinks.forEach((link) => {
-      link.classList.remove("active")
-      if (link.getAttribute("href") === `#${current}`) {
-        link.classList.add("active")
-      }
-    })
-  }
-
-  window.addEventListener("scroll", updateActiveLink)
-  updateActiveLink() // Initial call
-}
-
-// Smooth Scrolling
-function initSmoothScrolling() {
-  const links = document.querySelectorAll('a[href^="#"]')
-
-  links.forEach((link) => {
-    link.addEventListener("click", function (e) {
-      e.preventDefault()
-
-      const targetId = this.getAttribute("href")
-      const targetSection = document.querySelector(targetId)
-
-      if (targetSection) {
-        const offsetTop = targetSection.offsetTop - 70 // Account for fixed navbar
-
-        window.scrollTo({
-          top: offsetTop,
-          behavior: "smooth",
-        })
-
-        // Close mobile menu if open
-        const navMenu = document.getElementById("nav-menu")
-        const hamburger = document.getElementById("hamburger")
-        navMenu.classList.remove("active")
-        hamburger.classList.remove("active")
-      }
-    })
-  })
-}
-
-// Mobile Menu Toggle
-function initMobileMenu() {
-  const hamburger = document.getElementById("hamburger")
-  const navMenu = document.getElementById("nav-menu")
-
-  hamburger.addEventListener("click", () => {
-    hamburger.classList.toggle("active")
-    navMenu.classList.toggle("active")
-  })
-
-  // Close menu when clicking outside
-  document.addEventListener("click", (e) => {
-    if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-      hamburger.classList.remove("active")
-      navMenu.classList.remove("active")
+        navLinks.forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === `#${current}`) {
+                link.classList.add("active");
+            }
+        });
     }
-  })
 
-  // Close menu when window is resized
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 768) {
-      hamburger.classList.remove("active")
-      navMenu.classList.remove("active")
-    }
-  })
+    window.addEventListener("scroll", updateActiveLink);
+    updateActiveLink();
 }
 
 // Download CV Functionality
 function initDownloadCV() {
-  const downloadBtn = document.getElementById("download-cv")
+    const downloadBtn = document.getElementById("download-cv");
 
-  downloadBtn.addEventListener("click", (e) => {
-    e.preventDefault()
+    if (!downloadBtn) return;
 
-    showNotification("CV download akan segera dimulai!", "success")
+    downloadBtn.addEventListener("click", (e) => {
+        e.preventDefault();
 
-    setTimeout(() => {
-      // Buat elemen <a> sementara untuk download
-      const link = document.createElement("a")
-      link.href = "assets/CVAchmadKamal.pdf"
-      link.download = "CVAchmadKamal.pdf"
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
+        showNotification("CV download akan segera dimulai!", "success");
 
-      showNotification("Silakan periksa folder Downloads Anda.", "info")
-    }, 2000)
-  })
+        setTimeout(() => {
+            const link = document.createElement("a");
+            link.href = "assets/CVAchmadKamal.pdf";
+            link.download = "CVAchmadKamal.pdf";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            showNotification("Silakan periksa folder Downloads Anda.", "info");
+        }, 2000);
+    });
 }
-
 
 // Notification System
 function showNotification(message, type = "info") {
-  // Create notification element
-  const notification = document.createElement("div")
-  notification.className = `notification notification-${type}`
-  notification.innerHTML = `
+    const notification = document.createElement("div");
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
         <div class="notification-content">
             <span class="notification-message">${message}</span>
             <button class="notification-close">&times;</button>
         </div>
-    `
+    `;
 
-  // Add notification styles
-  notification.style.cssText = `
+    notification.style.cssText = `
         position: fixed;
         top: 20px;
         right: 20px;
@@ -227,393 +144,574 @@ function showNotification(message, type = "info") {
         transform: translateX(400px);
         transition: var(--transition-normal);
         max-width: 300px;
-    `
+    `;
 
-  // Add to DOM
-  document.body.appendChild(notification)
+    document.body.appendChild(notification);
 
-  // Animate in
-  setTimeout(() => {
-    notification.style.transform = "translateX(0)"
-  }, 100)
+    setTimeout(() => {
+        notification.style.transform = "translateX(0)";
+    }, 100);
 
-  // Close functionality
-  const closeBtn = notification.querySelector(".notification-close")
-  closeBtn.addEventListener("click", () => {
-    closeNotification(notification)
-  })
+    const closeBtn = notification.querySelector(".notification-close");
+    closeBtn.addEventListener("click", () => {
+        closeNotification(notification);
+    });
 
-  // Auto close after 5 seconds
-  setTimeout(() => {
-    closeNotification(notification)
-  }, 5000)
+    setTimeout(() => {
+        closeNotification(notification);
+    }, 5000);
 }
 
 function closeNotification(notification) {
-  notification.style.transform = "translateX(400px)"
-  setTimeout(() => {
-    if (notification.parentNode) {
-      notification.parentNode.removeChild(notification)
+    notification.style.transform = "translateX(400px)";
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+        }
+    }, 300);
+}
+
+// Hero Visual Animations
+function initHeroVisuals() {
+    // Parallax movement on scroll
+    window.addEventListener(
+        "scroll",
+        throttle(() => {
+            const scrolled = window.pageYOffset;
+            const photoContainer = document.querySelector(".photo-frame-3d");
+            
+            if (photoContainer) {
+                const yPos = -(scrolled * 0.05);
+                photoContainer.style.transform = `translateY(${yPos}px)`;
+            }
+        }, 16)
+    );
+}
+
+// Advanced Photo Effects
+function initAdvancedPhotoEffects() {
+    const heroPhoto = document.getElementById("hero-photo");
+    const photoWrapper = document.querySelector(".photo-wrapper-circular");
+
+    if (!heroPhoto || !photoWrapper) return;
+
+    // 3D Tilt Effect on Mouse Move
+    photoWrapper.addEventListener("mousemove", (e) => {
+        const rect = photoWrapper.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        const mouseX = e.clientX - centerX;
+        const mouseY = e.clientY - centerY;
+
+        const rotateX = (mouseY / rect.height) * -20;
+        const rotateY = (mouseX / rect.width) * 20;
+
+        photoWrapper.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+    });
+
+    // Reset transform on mouse leave
+    photoWrapper.addEventListener("mouseleave", () => {
+        photoWrapper.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)";
+    });
+
+    // Photo Click Effect
+    photoWrapper.addEventListener("click", () => {
+        photoWrapper.classList.add("photo-clicked");
+
+        const overlay = document.createElement("div");
+        overlay.className = "photo-overlay-fullscreen";
+        overlay.innerHTML = `
+            <div class="photo-fullscreen-container">
+                <img src="${heroPhoto.src}" alt="Profile Photo" class="photo-fullscreen">
+                <div class="photo-fullscreen-info">
+                    <h3>Computer Engineering Student</h3>
+                    <p>Taekwondo Athlete & Tech Enthusiast</p>
+                    <button class="close-fullscreen">&times;</button>
+                </div>
+            </div>
+        `;
+
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        `;
+
+        document.body.appendChild(overlay);
+
+        setTimeout(() => {
+            overlay.style.opacity = "1";
+        }, 10);
+
+        const closeBtn = overlay.querySelector(".close-fullscreen");
+        const closeOverlay = () => {
+            overlay.style.opacity = "0";
+            setTimeout(() => {
+                if (overlay.parentNode) {
+                    overlay.parentNode.removeChild(overlay);
+                }
+                photoWrapper.classList.remove("photo-clicked");
+            }, 300);
+        };
+
+        closeBtn.addEventListener("click", closeOverlay);
+        overlay.addEventListener("click", (e) => {
+            if (e.target === overlay) {
+                closeOverlay();
+            }
+        });
+
+        const handleEsc = (e) => {
+            if (e.key === "Escape") {
+                closeOverlay();
+                document.removeEventListener("keydown", handleEsc);
+            }
+        };
+        document.addEventListener("keydown", handleEsc);
+    });
+
+    // Photo Loading Effect
+    heroPhoto.addEventListener("load", () => {
+        heroPhoto.style.opacity = "0";
+        heroPhoto.style.transform = "scale(0.8)";
+
+        setTimeout(() => {
+            heroPhoto.style.transition = "all 0.8s ease";
+            heroPhoto.style.opacity = "1";
+            heroPhoto.style.transform = "scale(1)";
+        }, 100);
+    });
+}
+
+// Certificates Effects
+function initCertificatesEffects() {
+    // Add hover effects to certificate cards
+    const certificateCards = document.querySelectorAll('.certificate-card-3d');
+    
+    certificateCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.zIndex = '10';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.zIndex = '1';
+        });
+    });
+}
+
+// Adjust Hero Height for Mobile
+function adjustHeroHeight() {
+    const hero = document.querySelector('.hero');
+    const navbar = document.getElementById('navbar');
+    
+    if (!hero || !navbar) return;
+    
+    const navbarHeight = navbar.offsetHeight;
+    
+    if (window.innerWidth <= 768) {
+        hero.style.paddingTop = `${navbarHeight}px`;
+        hero.style.minHeight = `calc(100vh - ${navbarHeight}px)`;
+    } else {
+        hero.style.paddingTop = '0';
+        hero.style.minHeight = '100vh';
     }
-  }, 300)
 }
 
-// Intersection Observer for additional animations
-function initIntersectionObserver() {
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("animate-in")
-      }
-    })
-  }, observerOptions)
-
-  // Observe elements for animation
-  const animateElements = document.querySelectorAll(".project-card, .timeline-item, .contact-item")
-  animateElements.forEach((el) => observer.observe(el))
-}
-
-// Parallax Effect for Hero Background
-function initParallaxEffect() {
-  const heroBackground = document.querySelector(".hero-bg-animation")
-
-  if (heroBackground) {
-    window.addEventListener("scroll", () => {
-      const scrolled = window.pageYOffset
-      const rate = scrolled * -0.5
-      heroBackground.style.transform = `translateY(${rate}px)`
-    })
-  }
+// Throttle function for performance
+function throttle(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
 }
 
 // Initialize additional effects when page is fully loaded
 window.addEventListener("load", () => {
-  initIntersectionObserver()
-  initParallaxEffect()
+    initIntersectionObserver();
+    
+    // Add loaded class to body for additional styling
+    document.body.classList.add("loaded");
+    
+    // Adjust hero height on load
+    adjustHeroHeight();
+});
 
-  // Add loaded class to body for additional styling
-  document.body.classList.add("loaded")
-})
+// Intersection Observer for additional animations
+function initIntersectionObserver() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+    };
 
-// Performance optimization: Throttle scroll events
-function throttle(func, wait) {
-  let timeout
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(timeout)
-      func(...args)
-    }
-    clearTimeout(timeout)
-    timeout = setTimeout(later, wait)
-  }
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("animate-in");
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements for animation
+    const animateElements = document.querySelectorAll(".project-card-3d, .certificate-card-3d, .timeline-item, .contact-item-3d");
+    animateElements.forEach((el) => observer.observe(el));
 }
 
-// Apply throttling to scroll-heavy functions
-const throttledScrollSpy = throttle(initScrollSpy, 100)
-const throttledParallax = throttle(initParallaxEffect, 16)
-
-// Error handling for external libraries
-window.addEventListener("error", (e) => {
-  console.warn("Script error detected:", e.message)
-  // Graceful degradation - continue without the failed feature
-})
+// Window resize listener for responsive adjustments
+window.addEventListener('resize', () => {
+    adjustHeroHeight();
+});
 
 // Console welcome message
 console.log(`
 🚀 Portfolio Website Loaded Successfully!
 🎨 Design: Elegant Professional Theme
-⚡ Features: Typing Effect, Scroll Animations, Interactive Hero Visuals, Advanced Photo Effects
+⚡ Features: Typing Effect, Scroll Animations, Interactive Hero Visuals
+🎵 Music Player: Background music with controls
 📱 Mobile Friendly: Yes
 🔧 Built with: HTML5, CSS3, JavaScript, Typed.js, ScrollReveal.js
 
-Made with ❤️ and modern web technologies
-`)
+Made with dedication and modern web technologies
+`);
 
-// Hero Visual Animations Functionality
-function initHeroVisuals() {
-  // Floating cards parallax effect
-  const floatingCards = document.querySelectorAll(".floating-card")
-
-  floatingCards.forEach((card, index) => {
-    // Add hover effects
-    card.addEventListener("mouseenter", () => {
-      card.style.transform = "translateY(-10px) scale(1.05)"
-      card.style.boxShadow = "var(--shadow-glow)"
-    })
-
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = "translateY(0) scale(1)"
-      card.style.boxShadow = "var(--shadow-md)"
-    })
-
-    // Parallax movement on scroll
-    window.addEventListener(
-      "scroll",
-      throttle(() => {
-        const scrolled = window.pageYOffset
-        const speed = card.dataset.speed || 1
-        const yPos = -(scrolled * speed * 0.1)
-        card.style.transform = `translateY(${yPos}px)`
-      }, 16),
-    )
-  })
-
-  // Geometric shapes rotation
-  const shapes = document.querySelectorAll(".shape")
-  shapes.forEach((shape) => {
-    let rotation = 0
-    setInterval(() => {
-      rotation += 0.5
-      shape.style.transform = `rotate(${rotation}deg)`
-    }, 50)
-  })
+// Simple Certificate Modal Functionality
+function initCertificateModal() {
+    const modal = document.getElementById('certificate-modal');
+    const overlay = document.getElementById('modal-overlay');
+    const closeBtn = document.getElementById('modal-close-btn');
+    const modalImage = document.getElementById('modal-image');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    
+    const viewButtons = document.querySelectorAll('.view-certificate-btn');
+    const certificateImages = document.querySelectorAll('.certificate-img');
+    
+    let currentImageIndex = 0;
+    const certificateImagesArray = Array.from(certificateImages);
+    
+    // Open modal function
+    function openModal(imageIndex) {
+        if (imageIndex < 0 || imageIndex >= certificateImagesArray.length) return;
+        
+        currentImageIndex = imageIndex;
+        const img = certificateImagesArray[imageIndex];
+        
+        // Set modal image
+        modalImage.src = img.src;
+        modalImage.alt = img.alt;
+        
+        // Show modal
+        modal.classList.add('active');
+        document.body.classList.add('modal-open');
+        document.body.style.overflow = 'hidden';
+        
+        // Update navigation buttons
+        updateNavigationButtons();
+        
+        // Disable scroll for background
+        disableScroll();
+    }
+    
+    // Close modal function
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+        document.body.style.overflow = '';
+        
+        // Enable scroll
+        enableScroll();
+    }
+    
+    // Navigate to next image
+    function showNextImage() {
+        if (currentImageIndex < certificateImagesArray.length - 1) {
+            currentImageIndex++;
+            const img = certificateImagesArray[currentImageIndex];
+            modalImage.src = img.src;
+            modalImage.alt = img.alt;
+            updateNavigationButtons();
+        }
+    }
+    
+    // Navigate to previous image
+    function showPrevImage() {
+        if (currentImageIndex > 0) {
+            currentImageIndex--;
+            const img = certificateImagesArray[currentImageIndex];
+            modalImage.src = img.src;
+            modalImage.alt = img.alt;
+            updateNavigationButtons();
+        }
+    }
+    
+    // Update navigation buttons state
+    function updateNavigationButtons() {
+        prevBtn.disabled = currentImageIndex === 0;
+        nextBtn.disabled = currentImageIndex === certificateImagesArray.length - 1;
+    }
+    
+    // Disable scroll
+    function disableScroll() {
+        document.addEventListener('wheel', preventScroll, { passive: false });
+        document.addEventListener('touchmove', preventScroll, { passive: false });
+    }
+    
+    // Enable scroll
+    function enableScroll() {
+        document.removeEventListener('wheel', preventScroll);
+        document.removeEventListener('touchmove', preventScroll);
+    }
+    
+    // Prevent scroll when modal is open
+    function preventScroll(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    }
+    
+    // Event Listeners
+    
+    // View certificate buttons
+    viewButtons.forEach((button, index) => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            openModal(index);
+        });
+    });
+    
+    // Certificate image click
+    certificateImages.forEach((img, index) => {
+        img.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            openModal(index);
+        });
+    });
+    
+    // Close modal events
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', closeModal);
+    
+    // Navigation events
+    prevBtn.addEventListener('click', showPrevImage);
+    nextBtn.addEventListener('click', showNextImage);
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (!modal.classList.contains('active')) return;
+        
+        switch(e.key) {
+            case 'Escape':
+                closeModal();
+                break;
+            case 'ArrowLeft':
+                showPrevImage();
+                break;
+            case 'ArrowRight':
+                showNextImage();
+                break;
+        }
+    });
+    
+    // Prevent modal close when clicking on image
+    modalImage.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+    
+    // Update navigation on window resize
+    window.addEventListener('resize', updateNavigationButtons);
 }
 
-// Animated Stats Counter
-function initStatsCounter() {
-  const statNumbers = document.querySelectorAll(".stat-number")
-  let hasAnimated = false
+// Update DOMContentLoaded
+document.addEventListener("DOMContentLoaded", () => {
+    // Initialize all functionality
+    initNavigation();
+    initTypingEffect();
+    initScrollReveal();
+    initScrollSpy();
+    initSmoothScrolling();
+    initMobileMenu();
+    initDownloadCV();
+    initHeroVisuals();
+    initAdvancedPhotoEffects();
+    initMusicPlayer();
+    initCertificatesEffects();
+    initCertificateModal(); // Tambahkan ini
+    adjustHeroHeight();
 
-  const animateStats = () => {
-    if (hasAnimated) return
+    // Add loading animation
+    document.body.classList.add("loading");
+});
 
-    statNumbers.forEach((stat) => {
-      const target = Number.parseInt(stat.dataset.target)
-      let current = 0
-      const increment = target / 50
+// Perbaikan Smooth Scrolling
+function initSmoothScrolling() {
+    const links = document.querySelectorAll('a[href^="#"]:not(.certificate-link-3d)');
+    const navbar = document.getElementById("navbar");
+    const navbarHeight = navbar ? navbar.offsetHeight : 70;
 
-      const updateCounter = () => {
-        if (current < target) {
-          current += increment
-          stat.textContent = Math.ceil(current)
-          requestAnimationFrame(updateCounter)
+    links.forEach((link) => {
+        link.addEventListener("click", function (e) {
+            const targetId = this.getAttribute("href");
+            
+            if (targetId === '#' || !targetId) {
+                return;
+            }
+            
+            const targetSection = document.querySelector(targetId);
+
+            if (targetSection) {
+                e.preventDefault();
+                const offsetTop = targetSection.offsetTop - navbarHeight;
+
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: "smooth",
+                });
+
+                // Close mobile menu if open
+                const navMenu = document.getElementById("nav-menu");
+                const hamburger = document.getElementById("hamburger");
+                if (navMenu && hamburger) {
+                    navMenu.classList.remove("active");
+                    hamburger.classList.remove("active");
+                }
+            }
+        });
+    });
+}
+
+// Perbaikan Mobile Menu
+function initMobileMenu() {
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("nav-menu");
+
+    if (!hamburger || !navMenu) return;
+
+    hamburger.addEventListener("click", (e) => {
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active");
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (e) => {
+        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("active");
+        }
+    });
+
+    // Close menu when window is resized
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("active");
+        }
+    });
+}
+
+// Update Music Player untuk sembunyikan saat modal terbuka
+function initMusicPlayer() {
+    const audio = document.getElementById('background-music');
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const volumeBtn = document.getElementById('volume-btn');
+    const volumeSlider = document.getElementById('volume-slider');
+    const playIcon = document.getElementById('play-icon');
+    const volumeIcon = document.getElementById('volume-icon');
+    const musicPlayer = document.getElementById('music-player');
+
+    if (!audio || !playPauseBtn) return;
+
+    // Set initial volume
+    audio.volume = 1; // 100%
+if (volumeSlider) volumeSlider.value = 100;
+
+
+    // Play/Pause functionality
+    playPauseBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (audio.paused) {
+            audio.muted = false; 
+             audio.volume = 0.5; 
+             
+            audio.play();
+            playIcon.classList.remove('fa-play');
+            playIcon.classList.add('fa-pause');
         } else {
-          stat.textContent = target
+            audio.pause();
+            playIcon.classList.remove('fa-pause');
+            playIcon.classList.add('fa-play');
         }
-      }
+    });
 
-      updateCounter()
-    })
-
-    hasAnimated = true
-  }
-
-  // Trigger animation when stats come into view
-  const statsDisplay = document.querySelector(".stats-display")
-  if (statsDisplay) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setTimeout(animateStats, 500)
-          }
-        })
-      },
-      { threshold: 0.5 },
-    )
-
-    observer.observe(statsDisplay)
-  }
-}
-
-function initAdvancedPhotoEffects() {
-  const heroPhoto = document.getElementById("hero-photo")
-  const photoWrapper = document.querySelector(".photo-wrapper")
-  const photoFrame = document.querySelector(".photo-frame")
-  const particles = document.querySelectorAll(".particle")
-
-  if (!heroPhoto || !photoWrapper || !photoFrame) return
-
-  // 3D Tilt Effect on Mouse Move
-  photoWrapper.addEventListener("mousemove", (e) => {
-    const rect = photoWrapper.getBoundingClientRect()
-    const centerX = rect.left + rect.width / 2
-    const centerY = rect.top + rect.height / 2
-
-    const mouseX = e.clientX - centerX
-    const mouseY = e.clientY - centerY
-
-    const rotateX = (mouseY / rect.height) * -20
-    const rotateY = (mouseX / rect.width) * 20
-
-    photoWrapper.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`
-  })
-
-  // Reset transform on mouse leave
-  photoWrapper.addEventListener("mouseleave", () => {
-    photoWrapper.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)"
-  })
-
-  // Parallax Photo Movement on Scroll
-  window.addEventListener(
-    "scroll",
-    throttle(() => {
-      const scrolled = window.pageYOffset
-      const rate = scrolled * 0.05
-
-      if (photoFrame) {
-        photoFrame.style.transform = `translateY(${rate}px)`
-      }
-    }, 16),
-  )
-
-  // Interactive Particle System
-  const particleAnimations = []
-
-  const animateParticles = () => {
-    particles.forEach((particle, index) => {
-      if (particleAnimations[index]) {
-        clearInterval(particleAnimations[index])
-      }
-
-      particleAnimations[index] = setInterval(
-        () => {
-          const randomX = Math.random() * 100
-          const randomY = Math.random() * 100
-          const randomScale = 0.5 + Math.random() * 0.5
-          const randomOpacity = 0.3 + Math.random() * 0.7
-
-          particle.style.left = `${randomX}%`
-          particle.style.top = `${randomY}%`
-          particle.style.transform = `scale(${randomScale})`
-          particle.style.opacity = randomOpacity
-        },
-        2000 + index * 500,
-      )
-    })
-  }
-
-  // Start particle animation on hover
-  photoWrapper.addEventListener("mouseenter", animateParticles)
-
-  // Stop particle animation on leave
-  photoWrapper.addEventListener("mouseleave", () => {
-    particleAnimations.forEach((animation) => clearInterval(animation))
-    particles.forEach((particle) => {
-      particle.style.opacity = "0"
-    })
-  })
-
-  // Photo Click Effect - Zoom and Focus
-  photoWrapper.addEventListener("click", () => {
-    photoWrapper.classList.add("photo-clicked")
-
-    // Create overlay for focused view
-    const overlay = document.createElement("div")
-    overlay.className = "photo-overlay-fullscreen"
-    overlay.innerHTML = `
-      <div class="photo-fullscreen-container">
-        <img src="${heroPhoto.src}" alt="Profile Photo" class="photo-fullscreen">
-        <div class="photo-fullscreen-info">
-          <h3>Computer Engineering Student</h3>
-          <p>Taekwondo Athlete & Tech Enthusiast</p>
-          <button class="close-fullscreen">&times;</button>
-        </div>
-      </div>
-    `
-
-    // Add overlay styles
-    overlay.style.cssText = `
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10000;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    `
-
-    document.body.appendChild(overlay)
-
-    // Animate in
-    setTimeout(() => {
-      overlay.style.opacity = "1"
-    }, 10)
-
-    // Close functionality
-    const closeBtn = overlay.querySelector(".close-fullscreen")
-    const closeOverlay = () => {
-      overlay.style.opacity = "0"
-      setTimeout(() => {
-        if (overlay.parentNode) {
-          overlay.parentNode.removeChild(overlay)
-        }
-        photoWrapper.classList.remove("photo-clicked")
-      }, 300)
+    // Volume control
+    if (volumeSlider) {
+        volumeSlider.addEventListener('input', (e) => {
+            e.stopPropagation();
+            audio.volume = e.target.value / 100;
+            
+            if (volumeIcon) {
+                if (e.target.value == 0) {
+                    volumeIcon.classList.remove('fa-volume-up');
+                    volumeIcon.classList.add('fa-volume-mute');
+                } else if (e.target.value < 50) {
+                    volumeIcon.classList.remove('fa-volume-up', 'fa-volume-mute');
+                    volumeIcon.classList.add('fa-volume-down');
+                } else {
+                    volumeIcon.classList.remove('fa-volume-down', 'fa-volume-mute');
+                    volumeIcon.classList.add('fa-volume-up');
+                }
+            }
+        });
     }
 
-    closeBtn.addEventListener("click", closeOverlay)
-    overlay.addEventListener("click", (e) => {
-      if (e.target === overlay) {
-        closeOverlay()
-      }
-    })
-
-    // ESC key to close
-    const handleEsc = (e) => {
-      if (e.key === "Escape") {
-        closeOverlay()
-        document.removeEventListener("keydown", handleEsc)
-      }
+    // Mute/Unmute functionality
+    if (volumeBtn && volumeIcon) {
+        volumeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (audio.muted) {
+                audio.muted = false;
+                volumeIcon.classList.remove('fa-volume-mute');
+                volumeIcon.classList.add('fa-volume-up');
+                if (volumeSlider) volumeSlider.value = audio.volume * 100;
+            } else {
+                audio.muted = true;
+                volumeIcon.classList.remove('fa-volume-up', 'fa-volume-down');
+                volumeIcon.classList.add('fa-volume-mute');
+            }
+        });
     }
-    document.addEventListener("keydown", handleEsc)
-  })
 
-  // Dynamic Border Color Change
-  const borderAnimation = document.querySelector(".photo-border-animation")
-  if (borderAnimation) {
-    let hue = 0
-    setInterval(() => {
-      hue = (hue + 1) % 360
-      const color1 = `hsl(${hue}, 70%, 50%)`
-      const color2 = `hsl(${(hue + 60) % 360}, 70%, 50%)`
-      const color3 = `hsl(${(hue + 120) % 360}, 70%, 50%)`
-
-      borderAnimation.style.background = `linear-gradient(45deg, ${color1}, ${color2}, ${color3}) border-box`
-    }, 100)
-  }
-
-  // Photo Loading Effect
-  heroPhoto.addEventListener("load", () => {
-    heroPhoto.style.opacity = "0"
-    heroPhoto.style.transform = "scale(0.8)"
-
-    setTimeout(() => {
-      heroPhoto.style.transition = "all 0.8s ease"
-      heroPhoto.style.opacity = "1"
-      heroPhoto.style.transform = "scale(1)"
-    }, 100)
-  })
-
-  // Intersection Observer for Photo Entrance Animation
-  const photoObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          photoFrame.classList.add("photo-entrance")
-
-          // Stagger particle animations
-          particles.forEach((particle, index) => {
-            setTimeout(() => {
-              particle.style.animation = `particleFloat 6s ease-in-out infinite`
-              particle.style.animationDelay = `${index * 0.3}s`
-            }, index * 200)
-          })
-        }
-      })
-    },
-    { threshold: 0.3 },
-  )
-
-  photoObserver.observe(photoFrame)
+    // Sembunyikan music player saat modal terbuka
+    const modal = document.getElementById('certificate-modal');
+    if (modal && musicPlayer) {
+        const observer = new MutationObserver(() => {
+            if (modal.classList.contains('active')) {
+                musicPlayer.style.opacity = '0';
+                musicPlayer.style.pointerEvents = 'none';
+            } else {
+                musicPlayer.style.opacity = '1';
+                musicPlayer.style.pointerEvents = 'auto';
+            }
+        });
+        
+        observer.observe(modal, { attributes: true });
+    }
 }
+
+// Console log untuk debugging
+console.log('Certificate modal system loaded successfully!');

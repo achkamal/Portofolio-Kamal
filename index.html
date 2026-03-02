@@ -6,20 +6,110 @@
     <title>Portfolio - Achmad Kamal</title>
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Added Font Awesome for authentic social media icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- External Libraries -->
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
     <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <!-- Custom Styles -->
     <link rel="stylesheet" href="style.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Music Player Styles -->
+    <style>
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50px;
+            padding: 10px 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(44, 82, 130, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .music-player:hover {
+            transform: translateY(-3px);
+        }
+        
+        .music-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .music-btn {
+            background: none;
+            border: none;
+            color: var(--accent-primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .music-btn:hover {
+            background: var(--accent-light);
+        }
+        
+        .music-info {
+            display: none;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .volume-slider {
+            width: 80px;
+            height: 4px;
+            background: var(--accent-light);
+            border-radius: 2px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .music-player {
+                bottom: 10px;
+                right: 10px;
+                padding: 8px 15px;
+            }
+            
+            .music-info {
+                display: none;
+            }
+            
+            .volume-slider {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -40,6 +130,9 @@
                 </li>
                 <li class="nav-item">
                     <a href="#projects" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#certificates" class="nav-link">Certificates</a>
                 </li>
                 <li class="nav-item">
                     <a href="#contact" class="nav-link">Contact</a>
@@ -69,12 +162,11 @@
                 <div class="hero-buttons">
                     <a href="#contact" class="btn btn-primary">Contact Me</a>
                     <a class="btn btn-secondary" id="download-cv">
-                        <i class="icon-download"></i>
+                        <i class="fas fa-download"></i>
                         Download CV
                     </a>
                 </div>
                 <div class="social-links">
-                    <!-- Updated to use authentic Font Awesome icons -->
                     <a href="mailto:ach.khamal@gmail.com" class="social-link" title="Email">
                         <i class="fas fa-envelope"></i>
                     </a>
@@ -84,14 +176,13 @@
                     <a href="https://www.tiktok.com/@achkamall1" class="social-link" title="TikTok" target="_blank">
                         <i class="fab fa-tiktok"></i>
                     </a>
-                    <a href="https://github.com/achkamal" class="social-link" title="GitHub">
+                    <a href="https://github.com/achkamal" class="social-link" title="GitHub" target="_blank">
                         <i class="fab fa-github"></i>
                     </a>
                 </div>
             </div>
-            <!-- Added sophisticated visual elements to fill empty space -->
+            
             <div class="hero-visual">
-                <!-- Updated photo display to be circular and 3D, removed stats display -->
                 <div class="hero-photo-container">
                     <div class="photo-frame-3d">
                         <div class="photo-border-rotation"></div>
@@ -115,30 +206,6 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="floating-elements">
-                    <div class="floating-card" data-speed="2">
-                        <div class="card-icon">💻</div>
-                        <div class="card-text">Web Dev</div>
-                    </div>
-                    <div class="floating-card" data-speed="3">
-                        <div class="card-icon">📱</div>
-                        <div class="card-text">Mobile</div>
-                    </div>
-                    <div class="floating-card" data-speed="1.5">
-                        <div class="card-icon">🎨</div>
-                        <div class="card-text">Design</div>
-                    </div>
-                    <div class="floating-card" data-speed="2.5">
-                        <div class="card-icon">🥋</div>
-                        <div class="card-text">Taekwondo</div>
-                    </div>
-                </div>
-                <div class="geometric-shapes">
-                    <div class="shape shape-1"></div>
-                    <div class="shape shape-2"></div>
-                    <div class="shape shape-3"></div>
-                </div>
             </div>
         </div>
         <div class="hero-bg-animation"></div>
@@ -150,7 +217,6 @@
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-image">
-                    <!-- Placeholder for profile photo -->
                     <div class="profile-photo">
                         <img src="assets/bmwkmlrmh.jpg" alt="Profile Photo" id="profile-img">
                     </div>
@@ -163,7 +229,7 @@
                          while my background as a Taekwondo athlete has taught me discipline, focus, and dedication.
                     </p>
                     <p class="about-description">
-                        The combination of my passion for technology and athlete’s mindset 
+                        The combination of my passion for technology and athlete's mindset 
                         drives me to always give my best in every project I work on. 
                         I believe that technology can provide solutions to various challenges in everyday life.
                     </p>
@@ -172,6 +238,8 @@
                         <span class="skill-tag">Mobile Apps</span>
                         <span class="skill-tag">UI/UX Design</span>
                         <span class="skill-tag">Event Management</span>
+                        <span class="skill-tag">Frontend</span>
+                        <span class="skill-tag">JavaScript</span>
                     </div>
                 </div>
             </div>
@@ -182,7 +250,6 @@
     <section id="experience" class="experience">
         <div class="container">
             <h2 class="section-title">Experience</h2>
-            <!-- Added 3D visual elements and enhanced timeline structure -->
             <div class="experience-visual-container">
                 <div class="experience-3d-background">
                     <div class="floating-orb orb-1"></div>
@@ -197,7 +264,7 @@
                         </div>
                         <div class="timeline-content-3d">
                             <div class="content-card-3d">
-                                <h3 class="timeline-title">Taekwondo Athletes</h3>
+                                <h3 class="timeline-title">Taekwondo Athlete</h3>
                                 <p class="timeline-description">
                                    Taekwondo athlete shaped by discipline, focus, and a strong fighting spirit. 
                                    This experience has instilled perseverance and dedication that I carry into every aspect of life.
@@ -226,9 +293,10 @@
                                     <li>Commander of the IV Diponegoro Cup Military Region</li>
                                     <li>PON Polri Kapolri Cup 6</li>
                                     <li>Rawa Pening Taekwondo Championship</li>
+                                    <li>Undip Taekwondo Championship</li>
+                                    <li>Palagan Open Taekwondo Championship Seri 4</li>
                                 </ul>
                                 <div class="timeline-skills">
-                                    <span class="timeline-skill-3d">Project Management</span>
                                     <span class="timeline-skill-3d">Team Coordination</span>
                                     <span class="timeline-skill-3d">Problem Solving</span>
                                 </div>
@@ -243,13 +311,13 @@
                         </div>
                         <div class="timeline-content-3d">
                             <div class="content-card-3d">
-                                <h3 class="timeline-title">Head of Open Recruitment — RISSMANA(Remaja Islam SMAN 1 Ambarawa)</h3>
+                                <h3 class="timeline-title">Event Committee – Dinusfest Band Competition</h3>
                                 <p class="timeline-description">
-                                    Led the recruitment committee for new RISSMANA members, 
-                                    overseeing activities from planning to execution.
+                                    I was part of the organizing committee for the Dinusfest Band Competition, 
+                                    an event held by the Music Student Activity Unit (UKM Musik) of Universitas Dian Nuswantoro. 
+                                    In this role, I was involved in planning and executing the event, coordinating with team members, and ensuring that the competition ran smoothly according to the schedule.
                                 </p>
                                 <div class="timeline-skills">
-                                    <span class="timeline-skill-3d">Leadership</span>
                                     <span class="timeline-skill-3d">Strategic Planning</span>
                                     <span class="timeline-skill-3d">Team Management</span>
                                 </div>
@@ -265,7 +333,6 @@
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">Projects</h2>
-            <!-- Enhanced projects grid with 3D effects and interactive elements -->
             <div class="projects-3d-container">
                 <div class="projects-background-3d">
                     <div class="bg-particle bg-particle-1"></div>
@@ -280,11 +347,11 @@
                             <div class="project-image-3d">
                                 <img src="assets/demosigap.jpg" alt="SIGAP.ID App" id="project-img-1">
                                 <div class="image-overlay-3d">
-                                    <div class="overlay-icon">🚒</div>
+                                    <div class="overlay-icon">SIGAP</div>
                                 </div>
                             </div>
                             <div class="project-content-3d">
-                                <h3 class="project-title-3d">SIGAP.ID(On Going)</h3>
+                                <h3 class="project-title-3d">SIGAP.ID (On Going)</h3>
                                 <p class="project-description">
                                     A mobile application for a fire emergency reporting 
                                     system that enables the public to report incidents quickly and efficiently.
@@ -295,7 +362,7 @@
                                     <span class="tech-tag-3d">Real-time</span>
                                 </div>
                                 <div class="project-links-3d">
-                                    <a href="https://github.com/achkamal/SIGAP.DAMKAR.ID" class="project-link-3d">View Details</a>
+                                    <a href="https://github.com/achkamal/SIGAP.DAMKAR.ID" class="project-link-3d" target="_blank">View Details</a>
                                 </div>
                             </div>
                         </div>
@@ -307,7 +374,7 @@
                             <div class="project-image-3d">
                                 <img src="assets/bunga.png" alt="Website Bunga" id="project-img-2">
                                 <div class="image-overlay-3d">
-                                    <div class="overlay-icon">🌸</div>
+                                    <div class="overlay-icon">Flower</div>
                                 </div>
                             </div>
                             <div class="project-content-3d">
@@ -321,7 +388,7 @@
                                     <span class="tech-tag-3d">UI/UX</span>
                                 </div>
                                 <div class="project-links-3d">
-                                    <a href="https://achkamal.github.io/flower/" class="project-link-3d">View Details</a>
+                                    <a href="https://achkamal.github.io/flower/" class="project-link-3d" target="_blank">View Details</a>
                                 </div>
                             </div>
                         </div>
@@ -333,13 +400,13 @@
                             <div class="project-image-3d">
                                 <img src="assets/surat.png" alt="Kartu Rujukan BPJS Digital" id="project-img-3">
                                 <div class="image-overlay-3d">
-                                    <div class="overlay-icon">🏥</div>
+                                    <div class="overlay-icon">BPJS</div>
                                 </div>
                             </div>
                             <div class="project-content-3d">
-                                <h3 class="project-title-3d">Kartu Rujukan BPJS Digital</h3>
+                                <h3 class="project-title-3d">BPJS Digital Referral Card</h3>
                                 <p class="project-description">
-                                    A physical BPJS card that I transformed into a display on a website.(It is recommended to open using a desktop.)
+                                    A physical BPJS card that I transformed into a display on a website. (It is recommended to open using a desktop.)
                                 </p>
                                 <div class="project-tech-3d">
                                     <span class="tech-tag-3d">Digital Health</span>
@@ -347,7 +414,7 @@
                                     <span class="tech-tag-3d">UI/UX</span>
                                 </div>
                                 <div class="project-links-3d">
-                                    <a href="https://achkamal.github.io/SuratRujukanFKTPDigital/" class="project-link-3d">View Details</a>
+                                    <a href="https://achkamal.github.io/SuratRujukanFKTPDigital/" class="project-link-3d" target="_blank">View Details</a>
                                 </div>
                             </div>
                         </div>
@@ -357,11 +424,96 @@
         </div>
     </section>
 
+<!-- Certificates Section -->
+<section id="certificates" class="certificates">
+    <div class="container">
+        <h2 class="section-title">Certificates & Achievements</h2>
+        <div class="certificates-3d-container">
+            <div class="certificates-background-3d">
+                <div class="bg-particle bg-particle-1"></div>
+                <div class="bg-particle bg-particle-2"></div>
+                <div class="bg-particle bg-particle-3"></div>
+                <div class="bg-particle bg-particle-4"></div>
+            </div>
+            <div class="certificates-grid-3d">
+                <!-- Certificate 1 -->
+                <div class="certificate-card-3d" data-tilt>
+                    <div class="certificate-card-inner">
+                        <div class="certificate-glow"></div>
+                        <div class="certificate-image-3d">
+                            <img src="assets/certificates/sertifBTNG.png" alt="Basic Training Certificate" class="certificate-img">
+                            <div class="certificate-overlay-3d">
+                                <div class="overlay-text">Click to View</div>
+                            </div>
+                        </div>
+                        <div class="certificate-content-3d">
+                            <h3 class="certificate-title-3d">Basic Training For Next Generation</h3>
+                            <p class="certificate-description">
+                                Participants of the Network division in the Basic Training For Next Generation training on October 4 - October 25, 2025.
+                            </p>
+                            <div class="certificate-tech-3d">
+                                <span class="cert-tag-3d">Networking</span>
+                                <span class="cert-tag-3d">Training</span>
+                                <span class="cert-tag-3d">Development</span>
+                            </div>
+                            <div class="certificate-links-3d">
+                                <button class="certificate-link-3d view-certificate-btn">View Certificate</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certificate 2 -->
+                <div class="certificate-card-3d" data-tilt>
+                    <div class="certificate-card-inner">
+                        <div class="certificate-glow"></div>
+                        <div class="certificate-image-3d">
+                            <img src="assets/certificates/sertifSemnasti.jpeg" alt="Taekwondo Championship" class="certificate-img">
+                            <div class="certificate-overlay-3d">
+                                <div class="overlay-text">Click to View</div>
+                            </div>
+                        </div>
+                        <div class="certificate-content-3d">
+                            <h3 class="certificate-title-3d">National Seminar on Informatics Engineering 2025</h3>
+                            <p class="certificate-description">
+                                Participation in the National Informatics Engineering Seminar 2025 themed “Smart Living with AI: Real Tech for Real Life” held in Semarang, Indonesia.
+                            </p>
+                            <div class="certificate-tech-3d">
+                                <span class="cert-tag-3d">AI</span>
+                                <span class="cert-tag-3d">Technology</span>
+                                <span class="cert-tag-3d">National Event</span>
+                            </div>
+                            <div class="certificate-links-3d">
+                                <button class="certificate-link-3d view-certificate-btn">View Certificate</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+</section>
+
+<!-- Simple Certificate Modal -->
+<div class="certificate-modal" id="certificate-modal">
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div class="modal-image-wrapper">
+        <img src="" alt="Certificate Full View" class="modal-image" id="modal-image">
+        <button class="modal-close-btn" id="modal-close-btn">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="image-controls">
+            <button class="control-btn prev-btn" id="prev-btn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="control-btn next-btn" id="next-btn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">Contact Me</h2>
-            <!-- Added 3D background elements and centered contact layout -->
             <div class="contact-3d-container">
                 <div class="contact-background-3d">
                     <div class="contact-orb contact-orb-1"></div>
@@ -389,9 +541,7 @@
                             </div>
                         </div>
                         
-                       
-                        
-                        <div class="contact-item-3d" data-aos="fade-up" data-aos-delay="300">
+                        <div class="contact-item-3d" data-aos="fade-up" data-aos-delay="200">
                             <div class="contact-icon-3d">
                                 <div class="icon-glow"></div>
                                 <i class="fab fa-instagram"></i>
@@ -403,7 +553,7 @@
                             </div>
                         </div>
                         
-                        <div class="contact-item-3d" data-aos="fade-up" data-aos-delay="400">
+                        <div class="contact-item-3d" data-aos="fade-up" data-aos-delay="300">
                             <div class="contact-icon-3d">
                                 <div class="icon-glow"></div>
                                 <i class="fab fa-tiktok"></i>
@@ -415,7 +565,7 @@
                             </div>
                         </div>
                         
-                              <div class="contact-item-3d" data-aos="fade-up" data-aos-delay="400">
+                        <div class="contact-item-3d" data-aos="fade-up" data-aos-delay="400">
                             <div class="contact-icon-3d">
                                 <div class="icon-glow"></div>
                                 <i class="fab fa-github"></i>
@@ -437,22 +587,66 @@
         <div class="container">
             <div class="footer-content">
                 <p>&copy; 2025 Portfolio. Achmad Kamal.</p>
-                <p>Dibuat dengan ❤️ </p>
+                <p>Dibuat dengan dedikasi dan semangat</p>
             </div>
         </div>
     </footer>
 
+    <!-- Music Player -->
+    <div class="music-player" id="music-player">
+        <div class="music-controls">
+            <button class="music-btn" id="play-pause-btn">
+                <i class="fas fa-play" id="play-icon"></i>
+            </button>
+            <button class="music-btn" id="volume-btn">
+                <i class="fas fa-volume-up" id="volume-icon"></i>
+            </button>
+        </div>
+        <div class="music-info" id="music-info">
+            Background Music
+        </div>
+        <input type="range" min="0" max="100" value="50" class="volume-slider" id="volume-slider">
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="background-music" loop playsinline preload="auto">
+        <source src="assets/music/LangitFavorit.mp3" type="audio/mpeg">
+        <source src="assets/music/LangitFavorit.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
+    </audio>
+
     <!-- Custom JavaScript -->
     <script src="script.js"></script>
     <script>
-        AOS.init();
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+        
+        // Initialize tilt.js for project cards
         $(document).ready(function(){
+            // Project cards tilt
             $('.project-card-3d').tilt({
-                maxTilt: 5,
-                perspective: 1000,
+                maxTilt: 8,
+                perspective: 1500,
                 easing: "cubic-bezier(.03,.98,.52,.99)",
-                scale: 1.1,
-                speed: 1000
+                scale: 1.05,
+                speed: 800,
+                glare: true,
+                maxGlare: 0.2
+            });
+            
+            // Certificate cards tilt
+            $('.certificate-card-3d').tilt({
+                maxTilt: 8,
+                perspective: 1500,
+                easing: "cubic-bezier(.03,.98,.52,.99)",
+                scale: 1.05,
+                speed: 800,
+                glare: true,
+                maxGlare: 0.2
             });
         });
     </script>
