@@ -138,10 +138,15 @@
                     <a href="#contact" class="nav-link">Contact</a>
                 </li>
             </ul>
-            <div class="hamburger" id="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle" title="Toggle Night Mode" aria-label="Toggle Night Mode">
+                    <i class="fas fa-moon" id="theme-icon"></i>
+                </button>
+                <div class="hamburger" id="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
             </div>
         </div>
     </nav>
@@ -157,7 +162,7 @@
                     <span id="typed-text"></span>
                 </div>
                 <p class="hero-description">
-                    Computer Science student passionate about technology with strong dedication to frontend development. Focused on creating modern, interactive, and user-friendly web interfaces.
+                    Tech-driven Informatics Engineering student specializing in Cyber Security and DevOps. Dedicated to safeguarding digital assets through penetration testing, managing server administration, and streamlining reliable CI/CD pipelines.
                 </p>
                 <div class="hero-buttons">
                     <a href="#contact" class="btn btn-primary">Contact Me</a>
@@ -178,6 +183,9 @@
                     </a>
                     <a href="https://github.com/achkamal" class="social-link" title="GitHub" target="_blank">
                         <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/achmad-kamal-4a34b6386/" class="social-link" title="LinkedIn" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
                     </a>
                 </div>
             </div>
@@ -224,22 +232,21 @@
                 <div class="about-text">
                     <h3 class="about-subtitle">Computer Science Student</h3>
                     <p class="about-description">
-                        I am a student at Dian Nuswantoro University (Udinus), 
-                        majoring in Informatics Engineering. I have a strong interest in technology and software development,
-                         while my background as a Taekwondo athlete has taught me discipline, focus, and dedication.
+                        I am a student at Dian Nuswantoro University (UDINUS), majoring in Informatics Engineering. I have a strong interest in technology, specifically in Cyber Security and DevOps, while my background as a Taekwondo athlete has taught me discipline, focus, and dedication.
                     </p>
                     <p class="about-description">
-                        The combination of my passion for technology and athlete's mindset 
-                        drives me to always give my best in every project I work on. 
-                        I believe that technology can provide solutions to various challenges in everyday life.
+                        The combination of my passion for securing digital infrastructures and an athlete's mindset drives me to always give my best in every project I work on. I believe that technology, when built securely and deployed efficiently, can provide robust solutions to various challenges in everyday life.
                     </p>
                     <div class="skills-preview">
                         <span class="skill-tag">Web Development</span>
-                        <span class="skill-tag">Mobile Apps</span>
-                        <span class="skill-tag">UI/UX Design</span>
-                        <span class="skill-tag">Event Management</span>
-                        <span class="skill-tag">Frontend</span>
+                        <span class="skill-tag">Cyber Security</span>
+                        <span class="skill-tag">DevOps</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">DHCP</span>
+                        <span class="skill-tag">WordPress</span>
                         <span class="skill-tag">Laravel</span>
+                        <span class="skill-tag">React JS</span>
+                        <span class="skill-tag">IP Addressing</Address></span>
                     </div>
                 </div>
             </div>
@@ -250,82 +257,60 @@
     <section id="experience" class="experience">
         <div class="container">
             <h2 class="section-title">Experience</h2>
-            <div class="experience-visual-container">
-                <div class="experience-3d-background">
-                    <div class="floating-orb orb-1"></div>
-                    <div class="floating-orb orb-2"></div>
-                    <div class="floating-orb orb-3"></div>
-                </div>
-                <div class="experience-timeline">
-                    <div class="timeline-item" data-aos="fade-up">
-                        <div class="timeline-marker-3d">
-                            <div class="marker-glow"></div>
+            <div class="hscroll-wrapper" id="experience-scroll">
+                <button class="hscroll-btn hscroll-btn-left" data-target="experience-track" aria-label="Scroll Left"><i class="fas fa-chevron-left"></i></button>
+                <div class="hscroll-track" id="experience-track">
+                    <div class="hscroll-card content-card-3d">
+                        <div class="timeline-marker-inline">
                             <div class="marker-pulse"></div>
                         </div>
-                        <div class="timeline-content-3d">
-                            <div class="content-card-3d">
-                                <h3 class="timeline-title">Taekwondo Athlete</h3>
-                                <p class="timeline-description">
-                                   Taekwondo athlete shaped by discipline, focus, and a strong fighting spirit. 
-                                   This experience has instilled perseverance and dedication that I carry into every aspect of life.
-                                </p>
-                                <div class="timeline-skills">
-                                    <span class="timeline-skill-3d">Discipline</span>
-                                    <span class="timeline-skill-3d">Leadership</span>
-                                    <span class="timeline-skill-3d">Mental Strength</span>
-                                </div>
-                            </div>
+                        <h3 class="timeline-title">Taekwondo Athlete</h3>
+                        <p class="timeline-description">
+                            Taekwondo athlete shaped by discipline, focus, and a strong fighting spirit.
+                            This experience has instilled perseverance and dedication that I carry into every aspect of life.
+                        </p>
+                        <div class="timeline-skills">
+                            <span class="timeline-skill-3d">Discipline</span>
+                            <span class="timeline-skill-3d">Leadership</span>
+                            <span class="timeline-skill-3d">Mental Strength</span>
                         </div>
                     </div>
-                    
-                    <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
-                        <div class="timeline-marker-3d">
-                            <div class="marker-glow"></div>
+                    <div class="hscroll-card content-card-3d">
+                        <div class="timeline-marker-inline">
                             <div class="marker-pulse"></div>
                         </div>
-                        <div class="timeline-content-3d">
-                            <div class="content-card-3d">
-                                <h3 class="timeline-title">Event Organizer (Freelance)</h3>
-                                <p class="timeline-description">
-                                    Responsible for managing and organizing major Taekwondo events, including:
-                                </p>
-                                <ul class="timeline-events">
-                                    <li>Commander of the IV Diponegoro Cup Military Region</li>
-                                    <li>PON Polri Kapolri Cup 6</li>
-                                    <li>Rawa Pening Taekwondo Championship</li>
-                                    <li>Undip Taekwondo Championship</li>
-                                    <li>Palagan Open Taekwondo Championship Seri 4</li>
-                                </ul>
-                                <div class="timeline-skills">
-                                    <span class="timeline-skill-3d">Team Coordination</span>
-                                    <span class="timeline-skill-3d">Problem Solving</span>
-                                </div>
-                            </div>
+                        <h3 class="timeline-title">Event Organizer (Freelance)</h3>
+                        <p class="timeline-description">Responsible for managing and organizing major Taekwondo events, including:</p>
+                        <ul class="timeline-events">
+                            <li>Commander of the IV Diponegoro Cup Military Region</li>
+                            <li>PON Polri Kapolri Cup 6</li>
+                            <li>Rawa Pening Taekwondo Championship</li>
+                            <li>Undip Taekwondo Championship</li>
+                            <li>Palagan Open Taekwondo Championship Seri 4</li>
+                        </ul>
+                        <div class="timeline-skills">
+                            <span class="timeline-skill-3d">Team Coordination</span>
+                            <span class="timeline-skill-3d">Problem Solving</span>
                         </div>
                     </div>
-                    
-                    <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
-                        <div class="timeline-marker-3d">
-                            <div class="marker-glow"></div>
+                    <div class="hscroll-card content-card-3d">
+                        <div class="timeline-marker-inline">
                             <div class="marker-pulse"></div>
                         </div>
-                        <div class="timeline-content-3d">
-                            <div class="content-card-3d">
-                                <h3 class="timeline-title">Event Committee – Dinusfest Band Competition</h3>
-                                <p class="timeline-description">
-                                    I was part of the organizing committee for the Dinusfest Band Competition, 
-                                    an event held by the Music Student Activity Unit (UKM Musik) of Universitas Dian Nuswantoro. 
-                                    In this role, I was involved in planning and executing the event, coordinating with team members, and ensuring that the competition ran smoothly according to the schedule.
-                                </p>
-                                <div class="timeline-skills">
-                                    <span class="timeline-skill-3d">Strategic Planning</span>
-                                    <span class="timeline-skill-3d">Team Management</span>
-                                </div>
-                            </div>
+                        <h3 class="timeline-title">Event Committee – Dinusfest Band Competition</h3>
+                        <p class="timeline-description">
+                            Part of the organizing committee for the Dinusfest Band Competition, held by the Music Student Activity Unit (UKM Musik) of Universitas Dian Nuswantoro.
+                            Involved in planning, executing, and coordinating the event to run smoothly.
+                        </p>
+                        <div class="timeline-skills">
+                            <span class="timeline-skill-3d">Strategic Planning</span>
+                            <span class="timeline-skill-3d">Team Management</span>
                         </div>
                     </div>
                 </div>
+                <button class="hscroll-btn hscroll-btn-right" data-target="experience-track" aria-label="Scroll Right"><i class="fas fa-chevron-right"></i></button>
             </div>
+            <div class="hscroll-dots" id="experience-dots"></div>
         </div>
     </section>
 
@@ -333,29 +318,19 @@
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">Projects</h2>
-            <div class="projects-3d-container">
-                <div class="projects-background-3d">
-                    <div class="bg-particle bg-particle-1"></div>
-                    <div class="bg-particle bg-particle-2"></div>
-                    <div class="bg-particle bg-particle-3"></div>
-                    <div class="bg-particle bg-particle-4"></div>
-                </div>
-                <div class="projects-grid-3d">
-                    <div class="project-card-3d" data-tilt>
+            <div class="hscroll-wrapper" id="projects-scroll">
+                <button class="hscroll-btn hscroll-btn-left" data-target="projects-track" aria-label="Scroll Left"><i class="fas fa-chevron-left"></i></button>
+                <div class="hscroll-track" id="projects-track">
+                    <div class="hscroll-card project-card-3d" data-tilt>
                         <div class="project-card-inner">
                             <div class="project-glow"></div>
                             <div class="project-image-3d">
                                 <img src="assets/demosigap.jpg" alt="SIGAP.ID App" id="project-img-1">
-                                <div class="image-overlay-3d">
-                                    <div class="overlay-icon">SIGAP</div>
-                                </div>
+                                <div class="image-overlay-3d"><div class="overlay-icon">SIGAP</div></div>
                             </div>
                             <div class="project-content-3d">
                                 <h3 class="project-title-3d">SIGAP.ID (On Going)</h3>
-                                <p class="project-description">
-                                    A mobile application for a fire emergency reporting 
-                                    system that enables the public to report incidents quickly and efficiently.
-                                </p>
+                                <p class="project-description">A mobile application for a fire emergency reporting system that enables the public to report incidents quickly and efficiently.</p>
                                 <div class="project-tech-3d">
                                     <span class="tech-tag-3d">Mobile App</span>
                                     <span class="tech-tag-3d">Emergency System</span>
@@ -367,21 +342,16 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="project-card-3d" data-tilt>
+                    <div class="hscroll-card project-card-3d" data-tilt>
                         <div class="project-card-inner">
                             <div class="project-glow"></div>
                             <div class="project-image-3d">
                                 <img src="assets/bunga.png" alt="Website Bunga" id="project-img-2">
-                                <div class="image-overlay-3d">
-                                    <div class="overlay-icon">Flower</div>
-                                </div>
+                                <div class="image-overlay-3d"><div class="overlay-icon">Flower</div></div>
                             </div>
                             <div class="project-content-3d">
                                 <h3 class="project-title-3d">Digital Flower</h3>
-                                <p class="project-description">
-                                    A personal website that showcases beautiful and interactive flower designs.
-                                </p>
+                                <p class="project-description">A personal website that showcases beautiful and interactive flower designs.</p>
                                 <div class="project-tech-3d">
                                     <span class="tech-tag-3d">Web Development</span>
                                     <span class="tech-tag-3d">Responsive Design</span>
@@ -393,21 +363,16 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="project-card-3d" data-tilt>
+                    <div class="hscroll-card project-card-3d" data-tilt>
                         <div class="project-card-inner">
                             <div class="project-glow"></div>
                             <div class="project-image-3d">
                                 <img src="assets/surat.png" alt="Kartu Rujukan BPJS Digital" id="project-img-3">
-                                <div class="image-overlay-3d">
-                                    <div class="overlay-icon">BPJS</div>
-                                </div>
+                                <div class="image-overlay-3d"><div class="overlay-icon">BPJS</div></div>
                             </div>
                             <div class="project-content-3d">
                                 <h3 class="project-title-3d">BPJS Digital Referral Card</h3>
-                                <p class="project-description">
-                                    A physical BPJS card that I transformed into a display on a website. (It is recommended to open using a desktop.)
-                                </p>
+                                <p class="project-description">A physical BPJS card transformed into a digital display on a website. (Recommended to open using a desktop.)</p>
                                 <div class="project-tech-3d">
                                     <span class="tech-tag-3d">Digital Health</span>
                                     <span class="tech-tag-3d">System Integration</span>
@@ -420,37 +385,30 @@
                         </div>
                     </div>
                 </div>
+                <button class="hscroll-btn hscroll-btn-right" data-target="projects-track" aria-label="Scroll Right"><i class="fas fa-chevron-right"></i></button>
             </div>
+            <div class="hscroll-dots" id="projects-dots"></div>
         </div>
     </section>
 
 <!-- Certificates Section -->
 <section id="certificates" class="certificates">
     <div class="container">
-        <h2 class="section-title">Certificates & Achievements</h2>
-        <div class="certificates-3d-container">
-            <div class="certificates-background-3d">
-                <div class="bg-particle bg-particle-1"></div>
-                <div class="bg-particle bg-particle-2"></div>
-                <div class="bg-particle bg-particle-3"></div>
-                <div class="bg-particle bg-particle-4"></div>
-            </div>
-            <div class="certificates-grid-3d">
+        <h2 class="section-title">Certificates &amp; Achievements</h2>
+        <div class="hscroll-wrapper" id="certificates-scroll">
+            <button class="hscroll-btn hscroll-btn-left" data-target="certificates-track" aria-label="Scroll Left"><i class="fas fa-chevron-left"></i></button>
+            <div class="hscroll-track" id="certificates-track">
                 <!-- Certificate 1 -->
-                <div class="certificate-card-3d" data-tilt>
+                <div class="hscroll-card certificate-card-3d" data-tilt>
                     <div class="certificate-card-inner">
                         <div class="certificate-glow"></div>
                         <div class="certificate-image-3d">
                             <img src="assets/certificates/sertifBTNG.png" alt="Basic Training Certificate" class="certificate-img">
-                            <div class="certificate-overlay-3d">
-                                <div class="overlay-text">Click to View</div>
-                            </div>
+                            <div class="certificate-overlay-3d"><div class="overlay-text">Click to View</div></div>
                         </div>
                         <div class="certificate-content-3d">
                             <h3 class="certificate-title-3d">Basic Training For Next Generation</h3>
-                            <p class="certificate-description">
-                                Participants of the Network division in the Basic Training For Next Generation training on October 4 - October 25, 2025.
-                            </p>
+                            <p class="certificate-description">Participants of the Network division in the Basic Training For Next Generation training on October 4 - October 25, 2025.</p>
                             <div class="certificate-tech-3d">
                                 <span class="cert-tag-3d">Networking</span>
                                 <span class="cert-tag-3d">Training</span>
@@ -462,22 +420,17 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Certificate 2 -->
-                <div class="certificate-card-3d" data-tilt>
+                <div class="hscroll-card certificate-card-3d" data-tilt>
                     <div class="certificate-card-inner">
                         <div class="certificate-glow"></div>
                         <div class="certificate-image-3d">
-                            <img src="assets/certificates/sertifSemnasti.jpeg" alt="Taekwondo Championship" class="certificate-img">
-                            <div class="certificate-overlay-3d">
-                                <div class="overlay-text">Click to View</div>
-                            </div>
+                            <img src="assets/certificates/sertifSemnasti.jpeg" alt="National Seminar Certificate" class="certificate-img">
+                            <div class="certificate-overlay-3d"><div class="overlay-text">Click to View</div></div>
                         </div>
                         <div class="certificate-content-3d">
                             <h3 class="certificate-title-3d">National Seminar on Informatics Engineering 2025</h3>
-                            <p class="certificate-description">
-                                Participation in the National Informatics Engineering Seminar 2025 themed “Smart Living with AI: Real Tech for Real Life” held in Semarang, Indonesia.
-                            </p>
+                            <p class="certificate-description">Participation in the National Informatics Engineering Seminar 2025 themed "Smart Living with AI: Real Tech for Real Life" held in Semarang, Indonesia.</p>
                             <div class="certificate-tech-3d">
                                 <span class="cert-tag-3d">AI</span>
                                 <span class="cert-tag-3d">Technology</span>
@@ -489,6 +442,56 @@
                         </div>
                     </div>
                 </div>
+                     <!-- Certificate 3 -->
+                <div class="hscroll-card certificate-card-3d" data-tilt>
+                    <div class="certificate-card-inner">
+                        <div class="certificate-glow"></div>
+                        <div class="certificate-image-3d">
+                            <img src="assets/certificates/webinar.jpeg" alt="National Seminar Certificate" class="certificate-img">
+                            <div class="certificate-overlay-3d"><div class="overlay-text">Click to View</div></div>
+                        </div>
+                        <div class="certificate-content-3d">
+                            <h3 class="certificate-title-3d">Webinar Series #129 - Linux for Cyber Security</h3>
+                            <p class="certificate-description">Participated in Webinar Series #129 themed "Starting a Cyber Security Career from Scratch: Mastering Linux with the Help of AI," organized by Dunia Coding. The session included 2 hours of comprehensive learning on June 3, 2026.</p>
+                            <div class="certificate-tech-3d">
+                                <span class="cert-tag-3d">AI</span>
+                                <span class="cert-tag-3d">Cyber Security</span>
+                                <span class="cert-tag-3d">Linux</span>
+                            </div>
+                            <div class="certificate-links-3d">
+                                <button class="certificate-link-3d view-certificate-btn">View Certificate</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                     <!-- Certificate 4 -->
+                <div class="hscroll-card certificate-card-3d" data-tilt>
+                    <div class="certificate-card-inner">
+                        <div class="certificate-glow"></div>
+                        <div class="certificate-image-3d">
+                            <img src="assets/certificates/basicCyberSecurity.jpeg" alt="National Seminar Certificate" class="certificate-img">
+                            <div class="certificate-overlay-3d"><div class="overlay-text">Click to View</div></div>
+                        </div>
+                        <div class="certificate-content-3d">
+                            <h3 class="certificate-title-3d">Basic Cybersecurity Course</h3>
+                            <p class="certificate-description">Successfully completed the "Basic Cybersecurity" course as part of the JagoanSiber program, organized and certified by CODEPOLITAN on June 9, 2026.</p>
+                            <div class="certificate-tech-3d">
+                                <span class="cert-tag-3d">Cyber Security</span>
+                                <span class="cert-tag-3d">Online Course</span>
+                                <span class="cert-tag-3d">Network</span>
+                                <span class="cert-tag-3d">Common Cyber Threats</span>
+                            </div>
+                            <div class="certificate-links-3d">
+                                <button class="certificate-link-3d view-certificate-btn">View Certificate</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="hscroll-btn hscroll-btn-right" data-target="certificates-track" aria-label="Scroll Right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="hscroll-dots" id="certificates-dots"></div>
+    </div>
 </section>
 
 <!-- Simple Certificate Modal -->
@@ -576,6 +579,18 @@
                                 <a href="https://github.com/achkamal" class="contact-link-3d" target="_blank">achkamal</a>
                             </div>
                         </div>
+
+                        <div class="contact-item-3d" data-aos="fade-up" data-aos-delay="500">
+                            <div class="contact-icon-3d" style="background: linear-gradient(135deg, #0077b5, #00a0dc);">
+                                <div class="icon-glow"></div>
+                                <i class="fab fa-linkedin-in"></i>
+                                <div class="icon-ripple"></div>
+                            </div>
+                            <div class="contact-details-3d">
+                                <h3>LinkedIn</h3>
+                                <a href="https://www.linkedin.com/in/achmad-kamal-4a34b6386/" class="contact-link-3d" target="_blank">Achmad Kamal</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -609,7 +624,7 @@
     </div>
 
     <!-- Audio Element -->
-    <audio id="background-music" loop playsinline preload="auto">
+    <audio id="background-music" loop playsinline preload="auto" autoplay muted>
         <source src="assets/music/LangitFavorit.mp3" type="audio/mpeg">
         <source src="assets/music/LangitFavorit.ogg" type="audio/ogg">
         Your browser does not support the audio element.

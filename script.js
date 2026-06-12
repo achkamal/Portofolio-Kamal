@@ -21,7 +21,8 @@ function initTypingEffect() {
             strings: [
                 "Computer Science Student",
                 "Frontend Developer",
-                "Taekwondo Athlete"
+                "Cyber Security",
+                "DevOps"
             ],
             typeSpeed: 50,
             backSpeed: 30,
@@ -552,6 +553,8 @@ document.addEventListener("DOMContentLoaded", () => {
     initMusicPlayer();
     initCertificatesEffects();
     initCertificateModal(); // Tambahkan ini
+    initThemeToggle();       // Night mode toggle
+    initHorizontalScroll();  // Horizontal auto-scroll carousels
     adjustHeroHeight();
 
     // Add loading animation
@@ -636,25 +639,63 @@ function initMusicPlayer() {
 
     if (!audio || !playPauseBtn) return;
 
-    // Set initial volume
-    audio.volume = 1; // 100%
-if (volumeSlider) volumeSlider.value = 100;
+    // Set initial volume to 50%
+    audio.volume = 0.5;
+    if (volumeSlider) volumeSlider.value = 50;
+
+    // Helper: sync play icon state
+    function syncIcon() {
+        if (audio.paused) {
+            playIcon.classList.remove('fa-pause');
+            playIcon.classList.add('fa-play');
+        } else {
+            playIcon.classList.remove('fa-play');
+            playIcon.classList.add('fa-pause');
+        }
+    }
+
+    // === AUTOPLAY ===
+    // Browsers require muted autoplay. We try to play muted, then unmute.
+    function attemptAutoplay() {
+        audio.muted = true;
+        audio.volume = 0.5;
+        const promise = audio.play();
+        if (promise !== undefined) {
+            promise.then(() => {
+                // Autoplay allowed – unmute immediately
+                audio.muted = false;
+                syncIcon();
+            }).catch(() => {
+                // Autoplay blocked – wait for first user interaction
+                audio.muted = false;
+                syncIcon();
+                const unlockAudio = () => {
+                    audio.play().then(() => {
+                        syncIcon();
+                    }).catch(() => {});
+                    ['click', 'touchstart', 'keydown', 'scroll', 'mousemove'].forEach(evt => {
+                        document.removeEventListener(evt, unlockAudio);
+                    });
+                };
+                ['click', 'touchstart', 'keydown', 'scroll', 'mousemove'].forEach(evt => {
+                    document.addEventListener(evt, unlockAudio, { once: true });
+                });
+            });
+        }
+    }
+
+    attemptAutoplay();
 
 
     // Play/Pause functionality
     playPauseBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         if (audio.paused) {
-            audio.muted = false; 
-             audio.volume = 0.5; 
-             
-            audio.play();
-            playIcon.classList.remove('fa-play');
-            playIcon.classList.add('fa-pause');
+            audio.muted = false;
+            audio.play().then(() => syncIcon()).catch(() => syncIcon());
         } else {
             audio.pause();
-            playIcon.classList.remove('fa-pause');
-            playIcon.classList.add('fa-play');
+            syncIcon();
         }
     });
 
@@ -715,3 +756,167 @@ if (volumeSlider) volumeSlider.value = 100;
 
 // Console log untuk debugging
 console.log('Certificate modal system loaded successfully!');
+
+/* ============================================
+   NIGHT MODE TOGGLE
+   ============================================ */
+function initThemeToggle() {
+    const toggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    if (!toggleBtn || !themeIcon) return;
+
+    // Load saved preference
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    applyTheme(savedTheme);
+
+    toggleBtn.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+        localStorage.setItem('theme', next);
+    });
+
+    function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        if (theme === 'dark') {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        } else {
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+    }
+}
+
+/* ============================================
+   HORIZONTAL SCROLL CAROUSELS (auto-scroll + manual)
+   ============================================ */
+function initHorizontalScroll() {
+    const configs = [
+        { trackId: 'experience-track',    dotsId: 'experience-dots' },
+        { trackId: 'projects-track',      dotsId: 'projects-dots' },
+        { trackId: 'certificates-track',  dotsId: 'certificates-dots' },
+    ];
+
+    configs.forEach(({ trackId, dotsId }) => {
+        const track = document.getElementById(trackId);
+        const dotsContainer = document.getElementById(dotsId);
+        if (!track) return;
+
+        // --- Arrow buttons ---
+        const btnLeft  = track.parentElement.querySelector('.hscroll-btn-left');
+        const btnRight = track.parentElement.querySelector('.hscroll-btn-right');
+
+        // --- Build dots ---
+        const cards = track.querySelectorAll('.hscroll-card');
+        const cardCount = cards.length;
+
+        if (dotsContainer && cardCount > 0) {
+            for (let i = 0; i < cardCount; i++) {
+                const dot = document.createElement('button');
+                dot.className = 'hscroll-dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('aria-label', `Go to item ${i + 1}`);
+                dot.addEventListener('click', () => {
+                    cards[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+                });
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        function getCardWidth() {
+            if (cards.length === 0) return 340;
+            return cards[0].offsetWidth + parseInt(getComputedStyle(track).gap || 32);
+        }
+
+        function updateDots() {
+            const dots = dotsContainer ? dotsContainer.querySelectorAll('.hscroll-dot') : [];
+            if (dots.length === 0) return;
+            const cw = getCardWidth();
+            const idx = Math.round(track.scrollLeft / cw);
+            dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        }
+
+        function updateArrows() {
+            if (btnLeft)  btnLeft.disabled  = track.scrollLeft <= 2;
+            if (btnRight) btnRight.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+        }
+
+        function scrollBy(dir) {
+            track.scrollBy({ left: dir * getCardWidth(), behavior: 'smooth' });
+        }
+
+        if (btnLeft)  btnLeft.addEventListener('click',  () => scrollBy(-1));
+        if (btnRight) btnRight.addEventListener('click', () => scrollBy(1));
+
+        track.addEventListener('scroll', () => { updateDots(); updateArrows(); }, { passive: true });
+
+        updateArrows();
+        updateDots();
+
+        // --- Drag-to-scroll (mouse) ---
+        let isDown = false, startX = 0, scrollStart = 0;
+
+        track.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - track.offsetLeft;
+            scrollStart = track.scrollLeft;
+            track.classList.add('dragging');
+        });
+
+        track.addEventListener('mouseleave', () => { isDown = false; track.classList.remove('dragging'); });
+        track.addEventListener('mouseup',    () => { isDown = false; track.classList.remove('dragging'); });
+
+        track.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - track.offsetLeft;
+            track.scrollLeft = scrollStart - (x - startX);
+        });
+
+        // --- Touch swipe ---
+        let touchStartX = 0;
+        track.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        }, { passive: true });
+
+        track.addEventListener('touchend', (e) => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) scrollBy(diff > 0 ? 1 : -1);
+        }, { passive: true });
+
+        // --- Auto-scroll ---
+        let autoTimer = null;
+        let paused = false;
+        const INTERVAL = 3500;
+
+        function autoNext() {
+            if (paused) return;
+            const atEnd = track.scrollLeft >= track.scrollWidth - track.clientWidth - 4;
+            if (atEnd) {
+                track.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                scrollBy(1);
+            }
+        }
+
+        function startAuto() {
+            clearInterval(autoTimer);
+            autoTimer = setInterval(autoNext, INTERVAL);
+        }
+
+        function stopAuto() {
+            clearInterval(autoTimer);
+        }
+
+        track.addEventListener('mouseenter', () => { paused = true;  stopAuto(); });
+        track.addEventListener('mouseleave', () => { paused = false; startAuto(); });
+        track.addEventListener('touchstart', () => { paused = true;  stopAuto(); }, { passive: true });
+        track.addEventListener('touchend',   () => {
+            paused = false;
+            setTimeout(startAuto, 2000);
+        }, { passive: true });
+
+        // Start auto-scroll after a short delay
+        setTimeout(startAuto, 1500);
+    });
+}
