@@ -625,6 +625,10 @@ h6 {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
 }
 
 .about-subtitle {
@@ -1013,7 +1017,6 @@ h6 {
     border-radius: var(--radius-lg);
     overflow: hidden;
     position: relative;
-    transform-style: preserve-3d;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: 1px solid var(--accent-light);
 }
@@ -1021,7 +1024,6 @@ h6 {
 .project-card-inner {
     position: relative;
     height: 100%;
-    transform-style: preserve-3d;
 }
 
 .project-glow {
@@ -1245,7 +1247,6 @@ h6 {
     border-radius: var(--radius-lg);
     overflow: hidden;
     position: relative;
-    transform-style: preserve-3d;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: 1px solid var(--accent-light);
 }
@@ -1253,7 +1254,6 @@ h6 {
 .certificate-card-inner {
     position: relative;
     height: 100%;
-    transform-style: preserve-3d;
 }
 
 .certificate-glow {
@@ -1857,20 +1857,6 @@ h6 {
         left: 5px;
     }
 
-    /* Projects & Certificates Grid */
-    .projects-grid-3d,
-    .certificates-grid-3d {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-lg);
-    }
-    
-    .project-card-3d,
-    .certificate-card-3d {
-        width: 100%;
-        max-width: none;
-        flex-shrink: 0;
-    }
-
     /* Contact Section */
     .contact-info-centered {
         grid-template-columns: 1fr;
@@ -1887,6 +1873,27 @@ h6 {
         width: 50px;
         height: 50px;
         font-size: 1.3rem;
+    }
+
+    /* Matikan semua efek hover 3D transform di mobile */
+    .project-card-3d:hover,
+    .certificate-card-3d:hover {
+        transform: none;
+    }
+
+    .content-card-3d:hover {
+        transform: none;
+    }
+
+    /* Matikan interaksi pada foto profil di mobile */
+    .photo-wrapper-circular {
+        pointer-events: none;
+        cursor: default;
+    }
+
+    .profile-photo {
+        pointer-events: none;
+        touch-action: manipulation;
     }
 }
 
@@ -2320,6 +2327,9 @@ body.modal-open > *:not(.certificate-modal) {
     width: 100%;
     cursor: grab;
     user-select: none;
+    /* touch-action: pan-x pan-y = biarkan browser menangani scroll
+       di kedua sumbu secara native, tanpa JS menghalangi */
+    touch-action: pan-x pan-y;
 }
 
 .hscroll-track::-webkit-scrollbar {

@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Portfolio - Achmad Kamal</title>
     
     <!-- Google Fonts -->
@@ -321,7 +321,7 @@
             <div class="hscroll-wrapper" id="projects-scroll">
                 <button class="hscroll-btn hscroll-btn-left" data-target="projects-track" aria-label="Scroll Left"><i class="fas fa-chevron-left"></i></button>
                 <div class="hscroll-track" id="projects-track">
-                    <div class="hscroll-card project-card-3d" data-tilt>
+                    <div class="hscroll-card project-card-3d">
                         <div class="project-card-inner">
                             <div class="project-glow"></div>
                             <div class="project-image-3d">
@@ -342,7 +342,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="hscroll-card project-card-3d" data-tilt>
+                    <div class="hscroll-card project-card-3d">
                         <div class="project-card-inner">
                             <div class="project-glow"></div>
                             <div class="project-image-3d">
@@ -363,7 +363,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="hscroll-card project-card-3d" data-tilt>
+                    <div class="hscroll-card project-card-3d">
                         <div class="project-card-inner">
                             <div class="project-glow"></div>
                             <div class="project-image-3d">
@@ -399,7 +399,7 @@
             <button class="hscroll-btn hscroll-btn-left" data-target="certificates-track" aria-label="Scroll Left"><i class="fas fa-chevron-left"></i></button>
             <div class="hscroll-track" id="certificates-track">
                 <!-- Certificate 1 -->
-                <div class="hscroll-card certificate-card-3d" data-tilt>
+                <div class="hscroll-card certificate-card-3d">
                     <div class="certificate-card-inner">
                         <div class="certificate-glow"></div>
                         <div class="certificate-image-3d">
@@ -421,7 +421,7 @@
                     </div>
                 </div>
                 <!-- Certificate 2 -->
-                <div class="hscroll-card certificate-card-3d" data-tilt>
+                <div class="hscroll-card certificate-card-3d">
                     <div class="certificate-card-inner">
                         <div class="certificate-glow"></div>
                         <div class="certificate-image-3d">
@@ -443,7 +443,7 @@
                     </div>
                 </div>
                      <!-- Certificate 3 -->
-                <div class="hscroll-card certificate-card-3d" data-tilt>
+                <div class="hscroll-card certificate-card-3d">
                     <div class="certificate-card-inner">
                         <div class="certificate-glow"></div>
                         <div class="certificate-image-3d">
@@ -465,7 +465,7 @@
                     </div>
                 </div>
                      <!-- Certificate 4 -->
-                <div class="hscroll-card certificate-card-3d" data-tilt>
+                <div class="hscroll-card certificate-card-3d">
                     <div class="certificate-card-inner">
                         <div class="certificate-glow"></div>
                         <div class="certificate-image-3d">
@@ -642,27 +642,30 @@
         
         // Initialize tilt.js for project cards
         $(document).ready(function(){
-            // Project cards tilt
-            $('.project-card-3d').tilt({
-                maxTilt: 8,
-                perspective: 1500,
-                easing: "cubic-bezier(.03,.98,.52,.99)",
-                scale: 1.05,
-                speed: 800,
-                glare: true,
-                maxGlare: 0.2
-            });
-            
-            // Certificate cards tilt
-            $('.certificate-card-3d').tilt({
-                maxTilt: 8,
-                perspective: 1500,
-                easing: "cubic-bezier(.03,.98,.52,.99)",
-                scale: 1.05,
-                speed: 800,
-                glare: true,
-                maxGlare: 0.2
-            });
+            // Hanya aktifkan tilt.js di desktop (layar > 768px) untuk mencegah scroll vertikal macet di mobile
+            if (window.innerWidth > 768) {
+                // Project cards tilt
+                $('.project-card-3d').tilt({
+                    maxTilt: 8,
+                    perspective: 1500,
+                    easing: "cubic-bezier(.03,.98,.52,.99)",
+                    scale: 1.05,
+                    speed: 800,
+                    glare: true,
+                    maxGlare: 0.2
+                });
+                
+                // Certificate cards tilt
+                $('.certificate-card-3d').tilt({
+                    maxTilt: 8,
+                    perspective: 1500,
+                    easing: "cubic-bezier(.03,.98,.52,.99)",
+                    scale: 1.05,
+                    speed: 800,
+                    glare: true,
+                    maxGlare: 0.2
+                });
+            }
         });
     </script>
 </body>

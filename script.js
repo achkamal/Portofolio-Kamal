@@ -53,8 +53,10 @@ function initScrollReveal() {
         sr.reveal(".about-image", { origin: "left", delay: 400 });
         sr.reveal(".about-text", { origin: "right", delay: 500 });
         sr.reveal(".timeline-item", { interval: 200 });
-        sr.reveal(".project-card-3d", { interval: 200 });
-        sr.reveal(".certificate-card-3d", { interval: 200 });
+        // JANGAN reveal .project-card-3d dan .certificate-card-3d
+        // karena berada di dalam hscroll-track. ScrollReveal menyembunyikan
+        // mereka (opacity:0 + transform) dan tidak pernah memunculkannya
+        // kembali karena posisi horizontal di luar viewport.
         sr.reveal(".contact-item-3d", { interval: 100 });
 
         // Hero section animations
@@ -196,90 +198,95 @@ function initAdvancedPhotoEffects() {
 
     if (!heroPhoto || !photoWrapper) return;
 
-    // 3D Tilt Effect on Mouse Move
-    photoWrapper.addEventListener("mousemove", (e) => {
-        const rect = photoWrapper.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
+    // Hanya aktifkan efek interaktif di desktop
+    const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
 
-        const mouseX = e.clientX - centerX;
-        const mouseY = e.clientY - centerY;
+    if (!isMobile) {
+        // 3D Tilt Effect on Mouse Move (desktop only)
+        photoWrapper.addEventListener("mousemove", (e) => {
+            const rect = photoWrapper.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
 
-        const rotateX = (mouseY / rect.height) * -20;
-        const rotateY = (mouseX / rect.width) * 20;
+            const mouseX = e.clientX - centerX;
+            const mouseY = e.clientY - centerY;
 
-        photoWrapper.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-    });
+            const rotateX = (mouseY / rect.height) * -20;
+            const rotateY = (mouseX / rect.width) * 20;
 
-    // Reset transform on mouse leave
-    photoWrapper.addEventListener("mouseleave", () => {
-        photoWrapper.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)";
-    });
-
-    // Photo Click Effect
-    photoWrapper.addEventListener("click", () => {
-        photoWrapper.classList.add("photo-clicked");
-
-        const overlay = document.createElement("div");
-        overlay.className = "photo-overlay-fullscreen";
-        overlay.innerHTML = `
-            <div class="photo-fullscreen-container">
-                <img src="${heroPhoto.src}" alt="Profile Photo" class="photo-fullscreen">
-                <div class="photo-fullscreen-info">
-                    <h3>Computer Engineering Student</h3>
-                    <p>Taekwondo Athlete & Tech Enthusiast</p>
-                    <button class="close-fullscreen">&times;</button>
-                </div>
-            </div>
-        `;
-
-        overlay.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        `;
-
-        document.body.appendChild(overlay);
-
-        setTimeout(() => {
-            overlay.style.opacity = "1";
-        }, 10);
-
-        const closeBtn = overlay.querySelector(".close-fullscreen");
-        const closeOverlay = () => {
-            overlay.style.opacity = "0";
-            setTimeout(() => {
-                if (overlay.parentNode) {
-                    overlay.parentNode.removeChild(overlay);
-                }
-                photoWrapper.classList.remove("photo-clicked");
-            }, 300);
-        };
-
-        closeBtn.addEventListener("click", closeOverlay);
-        overlay.addEventListener("click", (e) => {
-            if (e.target === overlay) {
-                closeOverlay();
-            }
+            photoWrapper.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
         });
 
-        const handleEsc = (e) => {
-            if (e.key === "Escape") {
-                closeOverlay();
-                document.removeEventListener("keydown", handleEsc);
-            }
-        };
-        document.addEventListener("keydown", handleEsc);
-    });
+        // Reset transform on mouse leave
+        photoWrapper.addEventListener("mouseleave", () => {
+            photoWrapper.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)";
+        });
+
+        // Photo Click Effect (desktop only)
+        photoWrapper.addEventListener("click", () => {
+            photoWrapper.classList.add("photo-clicked");
+
+            const overlay = document.createElement("div");
+            overlay.className = "photo-overlay-fullscreen";
+            overlay.innerHTML = `
+                <div class="photo-fullscreen-container">
+                    <img src="${heroPhoto.src}" alt="Profile Photo" class="photo-fullscreen">
+                    <div class="photo-fullscreen-info">
+                        <h3>Computer Engineering Student</h3>
+                        <p>Taekwondo Athlete & Tech Enthusiast</p>
+                        <button class="close-fullscreen">&times;</button>
+                    </div>
+                </div>
+            `;
+
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            `;
+
+            document.body.appendChild(overlay);
+
+            setTimeout(() => {
+                overlay.style.opacity = "1";
+            }, 10);
+
+            const closeBtn = overlay.querySelector(".close-fullscreen");
+            const closeOverlay = () => {
+                overlay.style.opacity = "0";
+                setTimeout(() => {
+                    if (overlay.parentNode) {
+                        overlay.parentNode.removeChild(overlay);
+                    }
+                    photoWrapper.classList.remove("photo-clicked");
+                }, 300);
+            };
+
+            closeBtn.addEventListener("click", closeOverlay);
+            overlay.addEventListener("click", (e) => {
+                if (e.target === overlay) {
+                    closeOverlay();
+                }
+            });
+
+            const handleEsc = (e) => {
+                if (e.key === "Escape") {
+                    closeOverlay();
+                    document.removeEventListener("keydown", handleEsc);
+                }
+            };
+            document.addEventListener("keydown", handleEsc);
+        });
+    }
 
     // Photo Loading Effect
     heroPhoto.addEventListener("load", () => {
@@ -367,8 +374,10 @@ function initIntersectionObserver() {
         });
     }, observerOptions);
 
-    // Observe elements for animation
-    const animateElements = document.querySelectorAll(".project-card-3d, .certificate-card-3d, .timeline-item, .contact-item-3d");
+    // Hanya observe elemen yang BUKAN di dalam hscroll-track
+    // Cards di dalam carousel tidak perlu IntersectionObserver karena
+    // posisi horizontalnya membuat observer tidak bisa mendeteksi dengan benar
+    const animateElements = document.querySelectorAll(".timeline-item, .contact-item-3d");
     animateElements.forEach((el) => observer.observe(el));
 }
 
